@@ -1,0 +1,6 @@
+browser: chrome
+headlessMode: false
+browserScreenSize: 1600x900
+timeoutMilliseconds: 20000
+pageLoadedTimeoutMilliseconds: 20000
+pageLoadStrategy: eager

@@ -1,0 +1,70 @@
+Feature: PA_API_02
+Owner: Vladimir Minin
+
+Scenario:   [PA][API] Login new user
+    Given:  Registered new user with API
+    When:   Send request to generate token service:
+            ``
+            Request method: POST
+            Request URI:    https://demoqa.com/Account/v1/GenerateToken
+            Headers:        Content-Type=application/json
+            Body:           {
+                                "userName": "{username}",
+                                "password": "{password}"
+                            }
+            ``
+    And:    Get response from generate token service:
+            ``
+            Status:         200 OK
+            Content-Type:   application/json;
+                            charset=utf-8
+            Body:           {
+                                "token":    "{token}",
+                                "expires":  "{expiresDate}",
+                                "status":   "Success",
+                                "result":   "User authorized successfully."
+                            }
+            ``
+    And:    Send request to login service:
+            ``
+            Request method: POST
+            Request URI:    https://demoqa.com/Account/v1/Login
+            Headers:        Content-Type=application/json
+            Body:           {
+                                "userName": "{username}",
+                                "password": "{password}"
+                            }
+            ``
+    And:   Get response from login service:
+            ``
+            Status:         200 OK
+            Content-Type:   application/json;
+                            charset=utf-8
+            Body:           {
+                                "userId": "{userId}",
+                                "username": "{username}",
+                                "password": "{password}",
+                                "token": "{token}",
+                                "expires": "{expiresDate}",
+                                "created_date": "{createdDate}",
+                                "isActive": false
+                            }
+            ``
+    And:    Send request to user service:
+            ``
+            Request method: GET
+            Request URI:    https://demoqa.com/Account/v1/User/{userId}
+            Headers:        Authorization=Bearer {token}
+                            Content-Type=application/json
+            ``
+    Then:   Get response from user service:
+            ``
+            Status:         200 OK
+            Content-Type:   application/json;
+                            charset=utf-8
+            Body:           {
+                                "userId": "{userId}",
+                                "username": "{username}",
+                                "books": []
+                            }
+            ``

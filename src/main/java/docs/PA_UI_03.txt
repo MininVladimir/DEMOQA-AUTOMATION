@@ -1,0 +1,10 @@
+Feature: PA_UI_03
+Owner: Vladimir Minin
+
+Scenario:   [PA][UI] Login new user with using cookies
+    Given:  Opened domain resource page - https://demoqa.com/favicon.png
+    And:    Authorized new registered user with API
+    When:   Set auth user cookies in browser
+    And:    Open [Profile] page - https://demoqa.com/profile
+    Then:   Page url -> https://demoqa.com/profile
+    And:    User name -> {username}
