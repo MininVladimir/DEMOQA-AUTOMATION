@@ -31,9 +31,9 @@ public abstract class BasePage implements IBasePage, IContextService {
     $(locator).setValue(text);
   }
 
-  public void captchaByPass(By captchaFrameLocator, By captchaCheckboxLocator, By captchaAnchorLocator) {
+  public void captchaByPass(By captchaFrameLocator, By captchaAnchorLocator) {
     switchTo().frame($(captchaFrameLocator));
-    $(captchaCheckboxLocator).click();
+    $(captchaAnchorLocator).click();
     $(captchaAnchorLocator).shouldHave(attribute("aria-disabled", "false"));
     switchTo().defaultContent();
   }

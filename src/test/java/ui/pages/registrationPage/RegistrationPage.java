@@ -9,12 +9,11 @@ public class RegistrationPage extends BasePage {
   private final By lastNameInput = By.id("lastname");
   private final By usernameInput = By.id("userName");
   private final By passwordInput = By.id("password");
-  private final By captchaCheckbox = By.id("recaptcha-anchor");
   private final By captchaAnchor = By.id("recaptcha-anchor");
   private final By registerButton = By.id("register");
 
   public void captchaConfirm() {
-    captchaByPass(captchaFrame, captchaCheckbox, captchaAnchor);
+    captchaByPass(captchaFrame, captchaAnchor);
   }
 
   public void setFirstNameInput(String firstName) {
