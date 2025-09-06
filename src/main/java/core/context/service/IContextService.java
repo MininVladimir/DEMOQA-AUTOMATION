@@ -6,7 +6,16 @@ import core.context.ui.UiContextHolder;
 import static core.generator.Generator.stringGenerator;
 
 public interface IContextService {
-  default void setUserUsernameToContext(String contextType) {
+
+  static void setFirstNameToContext() {
+    UiContextHolder.getContext().setFirstname(stringGenerator(6, 0, 0, 0));
+  }
+
+  static void setLastNameToContext() {
+    UiContextHolder.getContext().setLastname(stringGenerator(6, 0, 0, 0));
+  }
+
+  static void setUserUsernameToContext(String contextType) {
     switch (contextType) {
       case "api" -> ApiContextHolder.getContext().setUsername(stringGenerator(6, 0, 0, 0));
       case "ui" -> UiContextHolder.getContext().setUsername(stringGenerator(6, 0, 0, 0));
@@ -14,7 +23,7 @@ public interface IContextService {
     }
   }
 
-  default void setPasswordToContext(String contextType) {
+  static void setPasswordToContext(String contextType) {
     switch (contextType) {
       case "api" -> ApiContextHolder.getContext().setPassword(stringGenerator(3, 3, 3, 3));
       case "ui" -> UiContextHolder.getContext().setPassword(stringGenerator(3, 3, 3, 3));
