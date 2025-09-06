@@ -17,8 +17,8 @@ import static io.restassured.RestAssured.given;
 public class UserRegistrationController implements IContextService {
 
   public void registration(String contextType) {
-    setUserUsernameToContext(contextType);
-    setPasswordToContext(contextType);
+    IContextService.setUserUsernameToContext(contextType);
+    IContextService.setPasswordToContext(contextType);
 
     installSpecification(
       requestSpecification(BASE_URI.getUri()),
