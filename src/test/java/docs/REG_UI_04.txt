@@ -2,7 +2,7 @@ Feature: REG_UI_04
 Owner: Vladimir Minin
 
 Scenario: [REG][UI] Registration user
-    Given:  Open [Registration] page - https://demoqa.com/register
+    Given:  Opened [Registration] page - https://demoqa.com/register
     When:   Fill "First Name" field with {firstName}
     And:    Fill "Last Name" field with {lastName}
     And:    Fill "UserName" field with {username}

@@ -1,0 +1,11 @@
+Feature: PA_UI_05
+Owner: Vladimir Minin
+
+Scenario:   [PA][UI] Login new user
+    Given:  Registered new user with API
+    And:    Opened [Login] page - https://demoqa.com/login
+    When:   Fill "UserName" field with {username}
+    And:    Fill "Password" field with {password}
+    And:    Click on "Login" button
+    Then:   Page url -> https://demoqa.com/profile
+    And:    User name -> {username}
