@@ -62,4 +62,10 @@ public class ProfilePageSteps {
     verifyProfilePageUrl();
     verifyUsername();
   }
+
+  @Step("[UI] Verify profile page is opened")
+  public static void verifyProfilePageIsOpened() {
+    verifyProfilePageUrl();
+    verifyUsername();
+  }
 }
