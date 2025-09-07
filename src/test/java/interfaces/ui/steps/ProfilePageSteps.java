@@ -39,6 +39,12 @@ public class ProfilePageSteps {
     profilePage.verifyUsername(UI.getContextType());
   }
 
+  @Step("[UI] Verify profile page is opened")
+  public static void verifyProfilePageIsOpened() {
+    verifyProfilePageUrl();
+    verifyUsername();
+  }
+
   @Step("[UI] Open domain resource")
   public static void openDomainResource() {
     profilePage.openPage(FAVICON_URI.getUri());
@@ -59,13 +65,6 @@ public class ProfilePageSteps {
   @Step("[UI] Set auth user cookies and open user profile page")
   public static void setAuthUserCookiesAndOpenUserProfilePage() {
     profilePage.setAuthUserCookiesAndOpenUserProfilePage(PROFILE_URI.getUri());
-    verifyProfilePageUrl();
-    verifyUsername();
-  }
-
-  @Step("[UI] Verify profile page is opened")
-  public static void verifyProfilePageIsOpened() {
-    verifyProfilePageUrl();
-    verifyUsername();
+    verifyProfilePageIsOpened();
   }
 }
