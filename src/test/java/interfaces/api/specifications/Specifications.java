@@ -8,11 +8,14 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.BASE_URI;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
+
 public class Specifications {
 
-  public static RequestSpecification requestSpecification(String baseUri) {
+  public static RequestSpecification requestSpecification() {
     return new RequestSpecBuilder()
-      .setBaseUri(baseUri)
+      .setBaseUri(getApplicationConfigValue(BASE_URI))
       .setContentType(ContentType.JSON)
       .log(LogDetail.ALL)
       .build();

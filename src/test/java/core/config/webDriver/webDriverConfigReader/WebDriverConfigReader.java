@@ -1,4 +1,4 @@
-package core.config.webDriver.driverConfigReader;
+package core.config.webDriver.webDriverConfigReader;
 
 import com.codeborne.selenide.Configuration;
 import core.config.webDriver.webDriverSingleton.WebDriverSingleton;
@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.Browsers.EDGE;
 import static com.codeborne.selenide.Browsers.FIREFOX;
 
-public class DriverConfigReader {
+public class WebDriverConfigReader {
   static WebDriverSingleton webDriverSingleton;
 
   static {
@@ -28,7 +28,7 @@ public class DriverConfigReader {
 
   private static void configureBrowserProperties() {
     Configuration.headless = Boolean.parseBoolean(System.getProperty("selenide.headlessMode").toLowerCase().trim());
-    Configuration.browserSize = webDriverSingleton.getWebDriverConfig().getBrowserScreenSize().trim();
+    Configuration.browserSize = webDriverSingleton.getWebDriverConfig().getBrowserScreenSize();
     Configuration.timeout = webDriverSingleton.getWebDriverConfig().getTimeoutMilliseconds();
     Configuration.pageLoadTimeout = webDriverSingleton.getWebDriverConfig().getPageLoadedTimeoutMilliseconds();
     Configuration.pageLoadStrategy = webDriverSingleton.getWebDriverConfig().getPageLoadStrategy();
