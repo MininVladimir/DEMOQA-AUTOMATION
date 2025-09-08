@@ -1,0 +1,12 @@
+#UI
+favicon: https://demoqa.com/favicon.png
+profilePage: https://demoqa.com/profile
+registrationPage: https://demoqa.com/register
+loginPage: https://demoqa.com/login
+
+#API
+baseUri: https://demoqa.com
+userRegistrationService: /Account/v1/User
+generateTokenService: /Account/v1/GenerateToken
+sendCredentialService: /Account/v1/Login
+userLoginService: /Account/v1/User/

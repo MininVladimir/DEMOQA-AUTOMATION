@@ -5,8 +5,8 @@ import interfaces.api.registration.controller.UserRegistrationController;
 import interfaces.ui.pages.loginPage.LoginPage;
 import io.qameta.allure.Step;
 
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.getLoginPageUri;
 import static enums.ContextType.UI;
-import static enums.UriPageType.LOGIN_URI;
 
 public class LoginPageSteps {
   static UserRegistrationController userRegistrationController = new UserRegistrationController();
@@ -41,6 +41,6 @@ public class LoginPageSteps {
 
   @Step("[UI] Open login page")
   public static void openLoginPage() {
-    loginPage.openPage(LOGIN_URI.getUri());
+    loginPage.openPage(getLoginPageUri());
   }
 }

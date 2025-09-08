@@ -5,9 +5,9 @@ import core.context.ui.UiContextHolder;
 import interfaces.ui.pages.registrationPage.RegistrationPage;
 import io.qameta.allure.Step;
 
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.getRegistrationPageUri;
 import static enums.ContextType.UI;
 import static enums.ResultType.USER_REGISTER_SUCCESSFULLY;
-import static enums.UriPageType.REGISTRATION_URI;
 
 public class RegistrationPageSteps implements IContextService {
   static RegistrationPage registrationPage = new RegistrationPage();
@@ -22,7 +22,7 @@ public class RegistrationPageSteps implements IContextService {
 
   @Step("Open registration page")
   private static void openRegistrationPage() {
-    registrationPage.openPage(REGISTRATION_URI.getUri());
+    registrationPage.openPage(getRegistrationPageUri());
   }
 
   @Step("Set firstName input")
