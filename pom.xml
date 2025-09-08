@@ -171,7 +171,8 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar"
                     </argLine>
                     <systemPropertyVariables>
-                        <selenide.browser>chrome</selenide.browser>
+                        <selenide.browserName>chrome</selenide.browserName>
+                        <selenide.headlessMode>false</selenide.headlessMode>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
