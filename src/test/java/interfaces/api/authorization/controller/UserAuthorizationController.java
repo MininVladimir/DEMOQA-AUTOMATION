@@ -8,10 +8,10 @@ import interfaces.api.authorization.dto.sendCredentials.SendUserCredentialsRespo
 import core.context.service.IContextService;
 import org.junit.jupiter.api.Assertions;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.getBaseUri;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.getGenerateTokenServiceEndpoint;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.getSendCredentialServiceEndpoint;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.getUserLoginServiceEndpoint;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.GENERATE_TOKEN_SERVICE;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.SEND_CREDENTIAL_SERVICE;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.USER_LOGIN_SERVICE;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static interfaces.api.specifications.Specifications.removeSpecifications;
 import static interfaces.api.specifications.Specifications.installSpecification;
 import static interfaces.api.specifications.Specifications.requestSpecification;
@@ -27,7 +27,7 @@ public class UserAuthorizationController implements IContextService {
 
   public void generateToken(String contextType) {
     installSpecification(
-      requestSpecification(getBaseUri()),
+      requestSpecification(),
       responseSpecification(OK.getStatusCode())
     );
 
@@ -35,7 +35,7 @@ public class UserAuthorizationController implements IContextService {
     GenerateAuthUserTokenResponse generateAuthUserTokenResponse = given()
       .body(generateAuthUserTokenRequest)
       .when()
-      .post(getGenerateTokenServiceEndpoint())
+      .post(getApplicationConfigValue(GENERATE_TOKEN_SERVICE))
       .then()
       .extract().response().as(GenerateAuthUserTokenResponse.class);
 
@@ -53,7 +53,7 @@ public class UserAuthorizationController implements IContextService {
 
   public void sendCredentials(String contextType) {
     installSpecification(
-      requestSpecification(getBaseUri()),
+      requestSpecification(),
       responseSpecification(OK.getStatusCode())
     );
 
@@ -61,7 +61,7 @@ public class UserAuthorizationController implements IContextService {
     SendUserCredentialsResponse sendUserCredentialsResponse = given()
       .body(sendUserCredentialsRequest)
       .when()
-      .post(getSendCredentialServiceEndpoint())
+      .post(getApplicationConfigValue(SEND_CREDENTIAL_SERVICE))
       .then()
       .extract().response().as(SendUserCredentialsResponse.class);
 
@@ -82,14 +82,14 @@ public class UserAuthorizationController implements IContextService {
 
   public void authorization(String contextType) {
     installSpecification(
-      requestSpecification(getBaseUri()),
+      requestSpecification(),
       responseSpecification(OK.getStatusCode())
     );
 
     UserAuthorizationResponse userAuthorizationResponse = given()
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
       .when()
-      .get(getUserLoginServiceEndpoint() + IContextService.getUserIdFromContext(contextType))
+      .get(getApplicationConfigValue(USER_LOGIN_SERVICE) + IContextService.getUserIdFromContext(contextType))
       .then()
       .extract().response().as(UserAuthorizationResponse.class);
 
