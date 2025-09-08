@@ -1,6 +1,6 @@
 package interfaces.ui.tests.baseTest;
 
-import core.config.webDriver.driverConfiguration.DriverConfiguration;
+import core.config.webDriver.driverConfigReader.DriverConfigReader;
 import core.context.ui.UiContextHolder;
 import io.qameta.allure.Step;
 
@@ -11,7 +11,7 @@ public interface IUiBaseTest {
 
   @Step("Setup driver")
   static void setupDriver() {
-    DriverConfiguration.setupDriver();
+    DriverConfigReader.setupDriver();
   }
 
   @Step("Remove context")

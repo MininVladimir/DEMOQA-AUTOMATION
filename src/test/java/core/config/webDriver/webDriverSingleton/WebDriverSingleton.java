@@ -7,7 +7,7 @@ import static core.parser.Parser.parseFileAsModelClass;
 public class WebDriverSingleton {
 
   private static WebDriverSingleton instance;
-  private final static String filePath = "src/test/resources/config/webDriverConfig.yaml";
+  private final static String filePath = "src/test/resources/config/webDriver/webDriverConfig.yaml";
 
   private final WebDriverConfig webDriverConfig;
 

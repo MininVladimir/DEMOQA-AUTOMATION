@@ -1,4 +1,4 @@
-package core.config.webDriver.driverConfiguration;
+package core.config.webDriver.driverConfigReader;
 
 import com.codeborne.selenide.Configuration;
 import core.config.webDriver.webDriverSingleton.WebDriverSingleton;
@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Browsers.CHROME;
 import static com.codeborne.selenide.Browsers.EDGE;
 import static com.codeborne.selenide.Browsers.FIREFOX;
 
-public class DriverConfiguration {
+public class DriverConfigReader {
   static WebDriverSingleton webDriverSingleton;
 
   static {

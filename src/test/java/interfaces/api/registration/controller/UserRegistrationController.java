@@ -5,9 +5,9 @@ import interfaces.api.registration.dto.UserRegistrationResponse;
 import core.context.service.IContextService;
 import org.junit.jupiter.api.Assertions;
 
-import static enums.EndpointType.USER_REGISTRATION;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.getBaseUri;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.getUserRegistrationServiceEndpoint;
 import static enums.StatusCodeType.CREATED;
-import static enums.UriPageType.BASE_URI;
 import static interfaces.api.specifications.Specifications.installSpecification;
 import static interfaces.api.specifications.Specifications.removeSpecifications;
 import static interfaces.api.specifications.Specifications.requestSpecification;
@@ -21,7 +21,7 @@ public class UserRegistrationController implements IContextService {
     IContextService.setPasswordToContext(contextType);
 
     installSpecification(
-      requestSpecification(BASE_URI.getUri()),
+      requestSpecification(getBaseUri()),
       responseSpecification(CREATED.getStatusCode())
     );
 
@@ -29,7 +29,7 @@ public class UserRegistrationController implements IContextService {
     UserRegistrationResponse userRegistrationResponse = given()
       .body(userRegistrationRequest)
       .when()
-      .post(USER_REGISTRATION.getEndpoint())
+      .post(getUserRegistrationServiceEndpoint())
       .then()
       .extract().response().as(UserRegistrationResponse.class);
 
