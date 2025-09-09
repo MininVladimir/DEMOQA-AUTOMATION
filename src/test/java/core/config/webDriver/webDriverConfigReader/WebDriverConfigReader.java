@@ -1,6 +1,7 @@
 package core.config.webDriver.webDriverConfigReader;
 
 import com.codeborne.selenide.Configuration;
+import core.config.webDriver.dto.WebDriverConfig;
 import core.config.webDriver.webDriverSingleton.WebDriverSingleton;
 
 import static com.codeborne.selenide.Browsers.CHROME;
@@ -8,11 +9,11 @@ import static com.codeborne.selenide.Browsers.EDGE;
 import static com.codeborne.selenide.Browsers.FIREFOX;
 
 public class WebDriverConfigReader {
-  static WebDriverSingleton webDriverSingleton;
+  static WebDriverConfig webDriverConfig;
 
   static {
     try {
-      webDriverSingleton = WebDriverSingleton.getInstance();
+      webDriverConfig = WebDriverSingleton.getInstance().getWebDriverConfig();
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
@@ -28,10 +29,10 @@ public class WebDriverConfigReader {
 
   private static void configureBrowserProperties() {
     Configuration.headless = Boolean.parseBoolean(System.getProperty("selenide.headlessMode").toLowerCase().trim());
-    Configuration.browserSize = webDriverSingleton.getWebDriverConfig().getBrowserScreenSize();
-    Configuration.timeout = webDriverSingleton.getWebDriverConfig().getTimeoutMilliseconds();
-    Configuration.pageLoadTimeout = webDriverSingleton.getWebDriverConfig().getPageLoadedTimeoutMilliseconds();
-    Configuration.pageLoadStrategy = webDriverSingleton.getWebDriverConfig().getPageLoadStrategy();
+    Configuration.browserSize = webDriverConfig.getBrowserScreenSize();
+    Configuration.timeout = webDriverConfig.getTimeoutMilliseconds();
+    Configuration.pageLoadTimeout = webDriverConfig.getPageLoadedTimeoutMilliseconds();
+    Configuration.pageLoadStrategy = webDriverConfig.getPageLoadStrategy();
   }
 
   public static void setupDriver() {

@@ -1,73 +1,73 @@
 package core.config.application.dto;
 
 public class ApplicationConfig {
-  private String favicon;
-  private String profilePage;
-  private String registrationPage;
-  private String loginPage;
+  private String faviconUrl;
+  private String profilePageUrl;
+  private String registrationPageUrl;
+  private String loginPageUrl;
   private String baseUri;
-  private String userRegistrationService;
-  private String generateTokenService;
-  private String sendCredentialService;
-  private String userLoginService;
+  private String userRegistrationServiceEndPoint;
+  private String generateTokenServiceEndPoint;
+  private String sendCredentialServiceEndPoint;
+  private String userAuthorizationServiceEndPoint;
 
   public ApplicationConfig() {
   }
 
   public ApplicationConfig(
-    String favicon,
-    String profilePage,
-    String registrationPage,
-    String loginPage,
+    String faviconUrl,
+    String profilePageUrl,
+    String registrationPageUrl,
+    String loginPageUrl,
     String baseUri,
-    String userRegistrationService,
-    String generateTokenService,
-    String sendCredentialService,
-    String userLoginService) {
-    this.favicon = favicon;
-    this.profilePage = profilePage;
-    this.registrationPage = registrationPage;
-    this.loginPage = loginPage;
+    String userRegistrationServiceEndPoint,
+    String generateTokenServiceEndPoint,
+    String sendCredentialServiceEndPoint,
+    String userAuthorizationServiceEndPoint) {
+    this.faviconUrl = faviconUrl;
+    this.profilePageUrl = profilePageUrl;
+    this.registrationPageUrl = registrationPageUrl;
+    this.loginPageUrl = loginPageUrl;
     this.baseUri = baseUri;
-    this.userRegistrationService = userRegistrationService;
-    this.generateTokenService = generateTokenService;
-    this.sendCredentialService = sendCredentialService;
-    this.userLoginService = userLoginService;
+    this.userRegistrationServiceEndPoint = userRegistrationServiceEndPoint;
+    this.generateTokenServiceEndPoint = generateTokenServiceEndPoint;
+    this.sendCredentialServiceEndPoint = sendCredentialServiceEndPoint;
+    this.userAuthorizationServiceEndPoint = userAuthorizationServiceEndPoint;
   }
 
-  public String getFavicon() {
-    return favicon;
+  public String getFaviconUrl() {
+    return faviconUrl;
   }
 
-  public String getProfilePage() {
-    return profilePage;
+  public String getProfilePageUrl() {
+    return profilePageUrl;
   }
 
-  public String getRegistrationPage() {
-    return registrationPage;
+  public String getRegistrationPageUrl() {
+    return registrationPageUrl;
   }
 
-  public String getLoginPage() {
-    return loginPage;
+  public String getLoginPageUrl() {
+    return loginPageUrl;
   }
 
   public String getBaseUri() {
     return baseUri;
   }
 
-  public String getUserRegistrationService() {
-    return userRegistrationService;
+  public String getUserRegistrationServiceEndPoint() {
+    return userRegistrationServiceEndPoint;
   }
 
-  public String getGenerateTokenService() {
-    return generateTokenService;
+  public String getGenerateTokenServiceEndPoint() {
+    return generateTokenServiceEndPoint;
   }
 
-  public String getSendCredentialService() {
-    return sendCredentialService;
+  public String getSendCredentialServiceEndPoint() {
+    return sendCredentialServiceEndPoint;
   }
 
-  public String getUserLoginService() {
-    return userLoginService;
+  public String getUserAuthorizationServiceEndPoint() {
+    return userAuthorizationServiceEndPoint;
   }
 }

@@ -5,8 +5,8 @@ import interfaces.api.registration.controller.UserRegistrationController;
 import interfaces.ui.pages.privateArea.ProfilePage;
 import io.qameta.allure.Step;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.FAVICON;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.PROFILE_PAGE;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.FAVICON_URL;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.PROFILE_PAGE_URL;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.ContextType.UI;
 
@@ -32,7 +32,7 @@ public class ProfilePageSteps {
 
   @Step("[UI] Verify profile page url")
   private static void verifyProfilePageUrl() {
-    profilePage.verifyPageUrl(getApplicationConfigValue(PROFILE_PAGE));
+    profilePage.verifyPageUrl(getApplicationConfigValue(PROFILE_PAGE_URL));
   }
 
   @Step("[UI] Verify username")
@@ -48,7 +48,7 @@ public class ProfilePageSteps {
 
   @Step("[UI] Open domain resource")
   public static void openDomainResource() {
-    profilePage.openPage(getApplicationConfigValue(FAVICON));
+    profilePage.openPage(getApplicationConfigValue(FAVICON_URL));
   }
 
   @Step("[API] Registration")
@@ -65,7 +65,7 @@ public class ProfilePageSteps {
 
   @Step("[UI] Set auth user cookies and open user profile page")
   public static void setAuthUserCookiesAndOpenUserProfilePage() {
-    profilePage.setAuthUserCookiesAndOpenUserProfilePage(getApplicationConfigValue(PROFILE_PAGE));
+    profilePage.setAuthUserCookiesAndOpenUserProfilePage(getApplicationConfigValue(PROFILE_PAGE_URL));
     verifyProfilePageIsOpened();
   }
 }

@@ -1,41 +1,42 @@
 package core.config.application.applicationConfigReader;
 
 import core.config.application.applicationSingleton.ApplicationSingleton;
+import core.config.application.dto.ApplicationConfig;
 
 public class ApplicationConfigReader {
-  static ApplicationSingleton applicationSingleton;
+  static ApplicationConfig applicationConfig;
 
   static {
     try {
-      applicationSingleton = ApplicationSingleton.getInstance();
+      applicationConfig = ApplicationSingleton.getInstance().getApplicationConfig();
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
   }
 
   public enum ConfigKey {
-    FAVICON,
-    PROFILE_PAGE,
-    REGISTRATION_PAGE,
-    LOGIN_PAGE,
+    FAVICON_URL,
+    PROFILE_PAGE_URL,
+    REGISTRATION_PAGE_URL,
+    LOGIN_PAGE_URL,
     BASE_URI,
-    USER_REGISTRATION_SERVICE,
-    GENERATE_TOKEN_SERVICE,
-    SEND_CREDENTIAL_SERVICE,
-    USER_LOGIN_SERVICE
+    USER_REGISTRATION_SERVICE_ENDPOINT,
+    GENERATE_TOKEN_SERVICE_ENDPOINT,
+    SEND_CREDENTIAL_SERVICE_ENDPOINT,
+    USER_AUTHORIZATION_SERVICE_ENDPOINT
   }
 
   public static String getApplicationConfigValue(ConfigKey key) {
     return switch (key) {
-      case FAVICON -> applicationSingleton.getApplicationConfig().getFavicon();
-      case PROFILE_PAGE -> applicationSingleton.getApplicationConfig().getProfilePage();
-      case REGISTRATION_PAGE -> applicationSingleton.getApplicationConfig().getRegistrationPage();
-      case LOGIN_PAGE -> applicationSingleton.getApplicationConfig().getLoginPage();
-      case BASE_URI -> applicationSingleton.getApplicationConfig().getBaseUri();
-      case USER_REGISTRATION_SERVICE -> applicationSingleton.getApplicationConfig().getUserRegistrationService();
-      case GENERATE_TOKEN_SERVICE -> applicationSingleton.getApplicationConfig().getGenerateTokenService();
-      case SEND_CREDENTIAL_SERVICE -> applicationSingleton.getApplicationConfig().getSendCredentialService();
-      case USER_LOGIN_SERVICE -> applicationSingleton.getApplicationConfig().getUserLoginService();
+      case FAVICON_URL -> applicationConfig.getFaviconUrl();
+      case PROFILE_PAGE_URL -> applicationConfig.getProfilePageUrl();
+      case REGISTRATION_PAGE_URL -> applicationConfig.getRegistrationPageUrl();
+      case LOGIN_PAGE_URL -> applicationConfig.getLoginPageUrl();
+      case BASE_URI -> applicationConfig.getBaseUri();
+      case USER_REGISTRATION_SERVICE_ENDPOINT -> applicationConfig.getUserRegistrationServiceEndPoint();
+      case GENERATE_TOKEN_SERVICE_ENDPOINT -> applicationConfig.getGenerateTokenServiceEndPoint();
+      case SEND_CREDENTIAL_SERVICE_ENDPOINT -> applicationConfig.getSendCredentialServiceEndPoint();
+      case USER_AUTHORIZATION_SERVICE_ENDPOINT -> applicationConfig.getUserAuthorizationServiceEndPoint();
     };
   }
 }
