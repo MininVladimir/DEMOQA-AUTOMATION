@@ -1,4 +1,4 @@
-package interfaces.api.authorization.dto.sendCredentials;
+package interfaces.api.user.dto.sendCredentials;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

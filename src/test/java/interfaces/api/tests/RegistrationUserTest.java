@@ -11,7 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import static core.owners.Owners.VLADIMIR_MININ;
 import static docs.tetsDescriptions.TestDescriptions.REG_API_01;
-import static interfaces.api.registration.steps.UserRegistrationSteps.registration;
+import static interfaces.api.user.steps.UserSteps.registration;
 
 @ExtendWith(RetryExtension.class)
 public class RegistrationUserTest extends ApiBaseTest {

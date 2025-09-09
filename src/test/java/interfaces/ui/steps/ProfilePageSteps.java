@@ -1,7 +1,6 @@
 package interfaces.ui.steps;
 
-import interfaces.api.authorization.controller.UserController;
-import interfaces.api.registration.controller.UserRegistrationController;
+import interfaces.api.user.controller.UserController;
 import interfaces.ui.pages.privateArea.ProfilePage;
 import io.qameta.allure.Step;
 
@@ -11,7 +10,6 @@ import static core.config.application.applicationConfigReader.ApplicationConfigR
 import static enums.ContextType.UI;
 
 public class ProfilePageSteps {
-  static UserRegistrationController userRegistrationController = new UserRegistrationController();
   static UserController userController = new UserController();
   static ProfilePage profilePage = new ProfilePage();
 
@@ -53,7 +51,7 @@ public class ProfilePageSteps {
 
   @Step("[API] Registration")
   public static void registration() {
-    userRegistrationController.registration(UI.getContextType());
+    userController.registration(UI.getContextType());
   }
 
   @Step("[API] Login")

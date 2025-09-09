@@ -10,10 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import static interfaces.api.authorization.steps.UserSteps.login;
-import static interfaces.api.registration.steps.UserRegistrationSteps.registration;
+import static interfaces.api.user.steps.UserSteps.login;
 import static core.owners.Owners.VLADIMIR_MININ;
 import static docs.tetsDescriptions.TestDescriptions.PA_API_02;
+import static interfaces.api.user.steps.UserSteps.registration;
 
 @ExtendWith(RetryExtension.class)
 public class LoginNewUserTest extends ApiBaseTest {

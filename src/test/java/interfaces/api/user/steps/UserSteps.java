@@ -1,6 +1,6 @@
-package interfaces.api.authorization.steps;
+package interfaces.api.user.steps;
 
-import interfaces.api.authorization.controller.UserController;
+import interfaces.api.user.controller.UserController;
 import core.context.service.IContextService;
 import io.qameta.allure.Step;
 
@@ -8,6 +8,11 @@ import static enums.ContextType.API;
 
 public class UserSteps implements IContextService {
   static UserController userController = new UserController();
+
+  @Step("[API] Registration")
+  public static void registration() {
+    userController.registration(API.getContextType());
+  }
 
   @Step("[API] Generate token")
   private static void generateToken() {
