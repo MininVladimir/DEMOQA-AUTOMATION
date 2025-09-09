@@ -30,7 +30,7 @@ public class ProfilePageSteps {
     userAuthorizationController.authorization(UI.getContextType());
   }
 
-  @Step("[UI] Verify profile page url")
+  @Step("[UI] Verify [Profile] page url")
   private static void verifyProfilePageUrl() {
     profilePage.verifyPageUrl(getApplicationConfigValue(PROFILE_PAGE_URL));
   }
@@ -40,7 +40,7 @@ public class ProfilePageSteps {
     profilePage.verifyUsername(UI.getContextType());
   }
 
-  @Step("[UI] Verify profile page is opened")
+  @Step("[UI] Verify [Profile] page is opened")
   public static void verifyProfilePageIsOpened() {
     verifyProfilePageUrl();
     verifyUsername();
@@ -63,9 +63,14 @@ public class ProfilePageSteps {
     authorization();
   }
 
-  @Step("[UI] Set auth user cookies and open user profile page")
-  public static void setAuthUserCookiesAndOpenUserProfilePage() {
-    profilePage.setAuthUserCookiesAndOpenUserProfilePage(getApplicationConfigValue(PROFILE_PAGE_URL));
+  @Step("[UI] Set auth user cookies and open [Profile] page")
+  public static void setAuthUserCookiesAndOpenProfilePage() {
+    profilePage.setAuthUserCookiesAndOpenProfilePage(getApplicationConfigValue(PROFILE_PAGE_URL));
     verifyProfilePageIsOpened();
+  }
+
+  @Step("[UI] Click 'Logout' button")
+  public static void logoutButtonClick() {
+    profilePage.logoutButtonClick();
   }
 }

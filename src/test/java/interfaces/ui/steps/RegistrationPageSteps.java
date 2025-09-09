@@ -21,47 +21,47 @@ public class RegistrationPageSteps implements IContextService {
     IContextService.setPasswordToContext(UI.getContextType());
   }
 
-  @Step("Open registration page")
+  @Step("[UI] Open [Registration] page")
   private static void openRegistrationPage() {
     registrationPage.openPage(getApplicationConfigValue(REGISTRATION_PAGE_URL));
   }
 
-  @Step("Set firstName input")
+  @Step("[UI] Set 'firstName' input")
   private static void setFirstnameInput() {
     registrationPage.setFirstNameInput(UiContextHolder.getContext().getFirstname());
   }
 
-  @Step("Set lastName input")
+  @Step("[UI] Set 'lastName' input")
   private static void setLastNameInput() {
     registrationPage.setLastNameInput(UiContextHolder.getContext().getLastname());
   }
 
-  @Step("Set userName input")
+  @Step("[UI] Set 'userName' input")
   private static void setUserNameInput() {
     registrationPage.setUserNameInput(UiContextHolder.getContext().getUsername());
   }
 
-  @Step("Set password input")
+  @Step("[UI] Set 'password' input")
   private static void setPasswordInput() {
     registrationPage.setPasswordInput(UiContextHolder.getContext().getPassword());
   }
 
-  @Step("Captcha confirm")
+  @Step("[UI] Captcha confirm")
   private static void captchaConfirm() {
     registrationPage.captchaConfirm();
   }
 
-  @Step("Register button click")
+  @Step("[UI] Click 'Register' button")
   private static void registerButtonClick() {
     registrationPage.registerButtonClick();
   }
 
-  @Step("Verify alert message")
+  @Step("[UI] Verify alert message")
   private static void verifyAlertMessage() {
     registrationPage.verifyAlertMessage(USER_REGISTER_SUCCESSFULLY.getResult());
   }
 
-  @Step("Registration user")
+  @Step("[UI] Registration")
   public static void registration() {
     generateUserData();
     openRegistrationPage();
