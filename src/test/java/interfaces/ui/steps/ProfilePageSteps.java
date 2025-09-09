@@ -5,8 +5,8 @@ import interfaces.api.registration.controller.UserRegistrationController;
 import interfaces.ui.pages.privateArea.ProfilePage;
 import io.qameta.allure.Step;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.FAVICON_URL;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.PROFILE_PAGE_URL;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.FAVICON_URL;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.PROFILE_PAGE_URL;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.ContextType.UI;
 

@@ -29,10 +29,10 @@ public class WebDriverConfigReader {
 
   private static void configureBrowserProperties() {
     Configuration.headless = Boolean.parseBoolean(System.getProperty("selenide.headlessMode").toLowerCase().trim());
-    Configuration.browserSize = webDriverConfig.getBrowserScreenSize();
-    Configuration.timeout = webDriverConfig.getTimeoutMilliseconds();
-    Configuration.pageLoadTimeout = webDriverConfig.getPageLoadedTimeoutMilliseconds();
-    Configuration.pageLoadStrategy = webDriverConfig.getPageLoadStrategy();
+    Configuration.browserSize = webDriverConfig.browserScreenSize();
+    Configuration.timeout = webDriverConfig.timeoutMilliseconds();
+    Configuration.pageLoadTimeout = webDriverConfig.pageLoadedTimeoutMilliseconds();
+    Configuration.pageLoadStrategy = webDriverConfig.pageLoadStrategy();
   }
 
   public static void setupDriver() {

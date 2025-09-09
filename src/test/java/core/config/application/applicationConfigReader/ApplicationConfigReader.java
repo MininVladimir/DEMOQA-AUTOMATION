@@ -14,7 +14,7 @@ public class ApplicationConfigReader {
     }
   }
 
-  public enum ConfigKey {
+  public enum AppConfigKey {
     FAVICON_URL,
     PROFILE_PAGE_URL,
     REGISTRATION_PAGE_URL,
@@ -26,17 +26,17 @@ public class ApplicationConfigReader {
     USER_AUTHORIZATION_SERVICE_ENDPOINT
   }
 
-  public static String getApplicationConfigValue(ConfigKey key) {
+  public static String getApplicationConfigValue(AppConfigKey key) {
     return switch (key) {
-      case FAVICON_URL -> applicationConfig.getFaviconUrl();
-      case PROFILE_PAGE_URL -> applicationConfig.getProfilePageUrl();
-      case REGISTRATION_PAGE_URL -> applicationConfig.getRegistrationPageUrl();
-      case LOGIN_PAGE_URL -> applicationConfig.getLoginPageUrl();
-      case BASE_URI -> applicationConfig.getBaseUri();
-      case USER_REGISTRATION_SERVICE_ENDPOINT -> applicationConfig.getUserRegistrationServiceEndPoint();
-      case GENERATE_TOKEN_SERVICE_ENDPOINT -> applicationConfig.getGenerateTokenServiceEndPoint();
-      case SEND_CREDENTIAL_SERVICE_ENDPOINT -> applicationConfig.getSendCredentialServiceEndPoint();
-      case USER_AUTHORIZATION_SERVICE_ENDPOINT -> applicationConfig.getUserAuthorizationServiceEndPoint();
+      case FAVICON_URL -> applicationConfig.faviconUrl();
+      case PROFILE_PAGE_URL -> applicationConfig.profilePageUrl();
+      case REGISTRATION_PAGE_URL -> applicationConfig.registrationPageUrl();
+      case LOGIN_PAGE_URL -> applicationConfig.loginPageUrl();
+      case BASE_URI -> applicationConfig.baseUri();
+      case USER_REGISTRATION_SERVICE_ENDPOINT -> applicationConfig.userRegistrationServiceEndPoint();
+      case GENERATE_TOKEN_SERVICE_ENDPOINT -> applicationConfig.generateTokenServiceEndPoint();
+      case SEND_CREDENTIAL_SERVICE_ENDPOINT -> applicationConfig.sendCredentialServiceEndPoint();
+      case USER_AUTHORIZATION_SERVICE_ENDPOINT -> applicationConfig.userAuthorizationServiceEndPoint();
     };
   }
 }
