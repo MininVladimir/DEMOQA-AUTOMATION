@@ -23,7 +23,7 @@ import static enums.StatusType.SUCCESS;
 import static enums.TokenType.BEARER;
 import static io.restassured.RestAssured.given;
 
-public class UserAuthorizationController implements IContextService {
+public class UserController implements IContextService {
 
   public void generateToken(String contextType) {
     installSpecification(

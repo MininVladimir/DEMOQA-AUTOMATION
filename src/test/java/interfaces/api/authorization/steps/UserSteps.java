@@ -1,27 +1,27 @@
 package interfaces.api.authorization.steps;
 
-import interfaces.api.authorization.controller.UserAuthorizationController;
+import interfaces.api.authorization.controller.UserController;
 import core.context.service.IContextService;
 import io.qameta.allure.Step;
 
 import static enums.ContextType.API;
 
-public class UserAuthorizationSteps implements IContextService {
-  static UserAuthorizationController userAuthorizationController = new UserAuthorizationController();
+public class UserSteps implements IContextService {
+  static UserController userController = new UserController();
 
   @Step("[API] Generate token")
   private static void generateToken() {
-    userAuthorizationController.generateToken(API.getContextType());
+    userController.generateToken(API.getContextType());
   }
 
   @Step("[API] Send credentials")
   private static void sendCredentials() {
-    userAuthorizationController.sendCredentials(API.getContextType());
+    userController.sendCredentials(API.getContextType());
   }
 
   @Step("[API] Authorization")
   private static void authorization() {
-    userAuthorizationController.authorization(API.getContextType());
+    userController.authorization(API.getContextType());
   }
 
   @Step("[API] Login")
