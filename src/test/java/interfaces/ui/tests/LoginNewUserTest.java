@@ -7,7 +7,6 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,12 +35,5 @@ public class LoginNewUserTest extends UiBaseTest {
   public void loginNewUserTest() {
     login();
     verifyProfilePageIsOpened();
-  }
-
-  @AfterEach
-  @Step("Clear temporary data")
-  public void clearTemporaryData() {
-    clearLocalStorage();
-    removeContext();
   }
 }

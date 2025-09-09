@@ -5,7 +5,7 @@ import interfaces.api.registration.dto.UserRegistrationResponse;
 import core.context.service.IContextService;
 import org.junit.jupiter.api.Assertions;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.USER_REGISTRATION_SERVICE;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.USER_REGISTRATION_SERVICE_ENDPOINT;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.StatusCodeType.CREATED;
 import static interfaces.api.specifications.Specifications.installSpecification;
@@ -29,7 +29,7 @@ public class UserRegistrationController implements IContextService {
     UserRegistrationResponse userRegistrationResponse = given()
       .body(userRegistrationRequest)
       .when()
-      .post(getApplicationConfigValue(USER_REGISTRATION_SERVICE))
+      .post(getApplicationConfigValue(USER_REGISTRATION_SERVICE_ENDPOINT))
       .then()
       .extract().response().as(UserRegistrationResponse.class);
 
