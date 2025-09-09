@@ -8,7 +8,7 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.BASE_URI;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.BASE_URI;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 
 public class Specifications {

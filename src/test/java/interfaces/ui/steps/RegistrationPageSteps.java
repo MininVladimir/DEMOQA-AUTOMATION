@@ -5,7 +5,7 @@ import core.context.ui.UiContextHolder;
 import interfaces.ui.pages.registrationPage.RegistrationPage;
 import io.qameta.allure.Step;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.REGISTRATION_PAGE_URL;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.REGISTRATION_PAGE_URL;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.ContextType.UI;
 import static enums.ResultType.USER_REGISTER_SUCCESSFULLY;

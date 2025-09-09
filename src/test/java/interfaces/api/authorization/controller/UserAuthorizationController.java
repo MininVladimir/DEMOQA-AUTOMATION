@@ -8,9 +8,9 @@ import interfaces.api.authorization.dto.sendCredentials.SendUserCredentialsRespo
 import core.context.service.IContextService;
 import org.junit.jupiter.api.Assertions;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.GENERATE_TOKEN_SERVICE_ENDPOINT;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.SEND_CREDENTIAL_SERVICE_ENDPOINT;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.USER_AUTHORIZATION_SERVICE_ENDPOINT;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.GENERATE_TOKEN_SERVICE_ENDPOINT;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.SEND_CREDENTIAL_SERVICE_ENDPOINT;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.USER_AUTHORIZATION_SERVICE_ENDPOINT;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static interfaces.api.specifications.Specifications.removeSpecifications;
 import static interfaces.api.specifications.Specifications.installSpecification;

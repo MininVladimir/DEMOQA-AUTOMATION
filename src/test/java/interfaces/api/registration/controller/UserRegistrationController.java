@@ -5,7 +5,7 @@ import interfaces.api.registration.dto.UserRegistrationResponse;
 import core.context.service.IContextService;
 import org.junit.jupiter.api.Assertions;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.USER_REGISTRATION_SERVICE_ENDPOINT;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.USER_REGISTRATION_SERVICE_ENDPOINT;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.StatusCodeType.CREATED;
 import static interfaces.api.specifications.Specifications.installSpecification;

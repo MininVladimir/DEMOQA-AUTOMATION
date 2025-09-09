@@ -5,7 +5,7 @@ import interfaces.api.registration.controller.UserRegistrationController;
 import interfaces.ui.pages.loginPage.LoginPage;
 import io.qameta.allure.Step;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.ConfigKey.LOGIN_PAGE_URL;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.LOGIN_PAGE_URL;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.ContextType.UI;
 
