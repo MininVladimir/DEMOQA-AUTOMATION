@@ -1,5 +1,6 @@
 package interfaces.api.user.controller;
 
+import core.listener.restAssuredListener.IRestAssuredListener;
 import interfaces.api.user.dto.authUserToken.GenerateAuthUserTokenRequest;
 import interfaces.api.user.dto.authUserToken.GenerateAuthUserTokenResponse;
 import interfaces.api.user.dto.authorization.UserAuthorizationResponse;
@@ -27,7 +28,7 @@ import static enums.StatusType.SUCCESS;
 import static enums.TokenType.BEARER;
 import static io.restassured.RestAssured.given;
 
-public class UserController implements IContextService {
+public class UserController implements IContextService, IRestAssuredListener {
 
   public void registration(String contextType) {
     IContextService.setUserUsernameToContext(contextType);
@@ -40,6 +41,7 @@ public class UserController implements IContextService {
 
     UserRegistrationRequest userRegistrationRequest = new UserRegistrationRequest(IContextService.getUsernameFromContext(contextType), IContextService.getPasswordFromContext(contextType));
     UserRegistrationResponse userRegistrationResponse = given()
+      .filter(allureFilter)
       .body(userRegistrationRequest)
       .when()
       .post(getApplicationConfigValue(USER_SERVICE_ENDPOINT))
@@ -65,6 +67,7 @@ public class UserController implements IContextService {
 
     GenerateAuthUserTokenRequest generateAuthUserTokenRequest = new GenerateAuthUserTokenRequest(IContextService.getUsernameFromContext(contextType), IContextService.getPasswordFromContext(contextType));
     GenerateAuthUserTokenResponse generateAuthUserTokenResponse = given()
+      .filter(allureFilter)
       .body(generateAuthUserTokenRequest)
       .when()
       .post(getApplicationConfigValue(GENERATE_TOKEN_SERVICE_ENDPOINT))
@@ -91,6 +94,7 @@ public class UserController implements IContextService {
 
     SendUserCredentialsRequest sendUserCredentialsRequest = new SendUserCredentialsRequest(IContextService.getUsernameFromContext(contextType), IContextService.getPasswordFromContext(contextType));
     SendUserCredentialsResponse sendUserCredentialsResponse = given()
+      .filter(allureFilter)
       .body(sendUserCredentialsRequest)
       .when()
       .post(getApplicationConfigValue(SEND_CREDENTIAL_SERVICE_ENDPOINT))
@@ -119,6 +123,7 @@ public class UserController implements IContextService {
     );
 
     UserAuthorizationResponse userAuthorizationResponse = given()
+      .filter(allureFilter)
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
       .when()
       .get(getApplicationConfigValue(USER_SERVICE_ENDPOINT) + IContextService.getUserIdFromContext(contextType))
@@ -141,6 +146,7 @@ public class UserController implements IContextService {
     );
 
     given()
+      .filter(allureFilter)
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
       .when()
       .delete(getApplicationConfigValue(USER_SERVICE_ENDPOINT) + IContextService.getUserIdFromContext(contextType));
