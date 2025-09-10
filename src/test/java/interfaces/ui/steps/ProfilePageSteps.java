@@ -1,7 +1,6 @@
 package interfaces.ui.steps;
 
-import interfaces.api.authorization.controller.UserAuthorizationController;
-import interfaces.api.registration.controller.UserRegistrationController;
+import interfaces.api.user.controller.UserController;
 import interfaces.ui.pages.privateArea.ProfilePage;
 import io.qameta.allure.Step;
 
@@ -11,23 +10,22 @@ import static core.config.application.applicationConfigReader.ApplicationConfigR
 import static enums.ContextType.UI;
 
 public class ProfilePageSteps {
-  static UserRegistrationController userRegistrationController = new UserRegistrationController();
-  static UserAuthorizationController userAuthorizationController = new UserAuthorizationController();
+  static UserController userController = new UserController();
   static ProfilePage profilePage = new ProfilePage();
 
   @Step("[API] Generate token")
   private static void generateToken() {
-    userAuthorizationController.generateToken(UI.getContextType());
+    userController.generateToken(UI.getContextType());
   }
 
   @Step("[API] Send credentials")
   private static void sendCredentials() {
-    userAuthorizationController.sendCredentials(UI.getContextType());
+    userController.sendCredentials(UI.getContextType());
   }
 
   @Step("[API] Authorization")
   private static void authorization() {
-    userAuthorizationController.authorization(UI.getContextType());
+    userController.authorization(UI.getContextType());
   }
 
   @Step("[UI] Verify [Profile] page url")
@@ -53,7 +51,7 @@ public class ProfilePageSteps {
 
   @Step("[API] Registration")
   public static void registration() {
-    userRegistrationController.registration(UI.getContextType());
+    userController.registration(UI.getContextType());
   }
 
   @Step("[API] Login")

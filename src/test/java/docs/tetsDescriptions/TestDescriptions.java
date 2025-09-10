@@ -7,4 +7,5 @@ public class TestDescriptions {
   public static final String REG_UI_04 = "REG_UI_04 - Registration user";
   public static final String PA_UI_05 = "PA_UI_05 - Login new user";
   public static final String PA_UI_06 = "PA_UI_06 - Logout";
+  public static final String PA_API_07 = "PA_API_07 - Delete user";
 }

@@ -1,10 +1,10 @@
-package interfaces.api.registration.dto;
+package interfaces.api.user.dto.authUserToken;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record UserRegistrationRequest(String username, String password) {
+public record GenerateAuthUserTokenRequest(String username, String password) {
 
-  public UserRegistrationRequest(
+  public GenerateAuthUserTokenRequest(
     @JsonProperty("userName") String username,
     @JsonProperty("password") String password) {
     this.username = username;

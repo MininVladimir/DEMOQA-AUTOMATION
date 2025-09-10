@@ -1,15 +1,15 @@
-package interfaces.api.registration.dto;
+package interfaces.api.user.dto.authorization;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public record UserRegistrationResponse(String userId, String username, List<Object> books) {
+public record UserAuthorizationResponse(String userId, String username, List<Object> books) {
 
   @JsonIgnoreProperties(ignoreUnknown = true)
-  public UserRegistrationResponse(
-    @JsonProperty("userID") String userId,
+  public UserAuthorizationResponse(
+    @JsonProperty("userId") String userId,
     @JsonProperty("username") String username,
     @JsonProperty("books") List<Object> books) {
     this.userId = userId;

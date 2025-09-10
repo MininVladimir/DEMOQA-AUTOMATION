@@ -6,21 +6,30 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static core.owners.Owners.VLADIMIR_MININ;
-import static docs.tetsDescriptions.TestDescriptions.REG_API_01;
+import static docs.tetsDescriptions.TestDescriptions.PA_API_07;
+import static interfaces.api.user.steps.UserSteps.deleteUser;
+import static interfaces.api.user.steps.UserSteps.login;
 import static interfaces.api.user.steps.UserSteps.registration;
 
 @ExtendWith(RetryExtension.class)
-public class RegistrationUserTest extends ApiBaseTest {
+public class DeleteUserTest extends ApiBaseTest {
+
+  @BeforeEach
+  public void authorizeNewUser() {
+    registration();
+    login();
+  }
 
   @Test
-  @Description(REG_API_01)
+  @Description(PA_API_07)
   @Owner(VLADIMIR_MININ)
   @Severity(SeverityLevel.CRITICAL)
-  public void registrationUserTest() {
-    registration();
+  public void deleteUserTest() {
+    deleteUser();
   }
 }

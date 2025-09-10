@@ -7,7 +7,6 @@ public class LoginPage extends BasePage {
   private final By usernameInput = By.id("userName");
   private final By passwordInput = By.id("password");
   private final By loginButton = By.id("login");
-  private final By pageTitle = By.xpath("//h1[@class = 'text-center']");
 
   public void setUserNameInput(String userName) {
     setInput(usernameInput, userName);
@@ -21,7 +20,7 @@ public class LoginPage extends BasePage {
     elementClick(loginButton);
   }
 
-  public void verifyPageTitle(String text) {
-    verifyTextOfElement(pageTitle, text);
+  public void verifyVisibilityOfLoginButton() {
+    verifyVisibilityOfElement(loginButton);
   }
 }

@@ -2,7 +2,7 @@ Feature: REG_API_01
 Owner: Vladimir Minin
 
 Scenario:   [REG][API] Registration user
-    When:   Send request to registration service:
+    When:   Send request to user service:
             ``
             Request method: POST
             Request URI:    https://demoqa.com/Account/v1/User
@@ -12,7 +12,7 @@ Scenario:   [REG][API] Registration user
                                 "password": "{password}"
                             }
             ``
-    Then:   Get response from registration service:
+    Then:   Get response from user service:
             ``
             Status:         201 Created
             Content-Type:   application/json;
