@@ -1,0 +1,17 @@
+Feature: PA_API_07
+Owner: Vladimir Minin
+
+Scenario:   [PA][API] Delete user
+    Given:  Authorized new user with API
+    When:   Send request to user service:
+            ``
+            Request method: DELETE
+            Request URI:    https://demoqa.com/Account/v1/User/{userId}
+            Headers:        Authorization=Bearer {token}
+                            Content-Type=application/json
+            ``
+    Then:   Get response from user service:
+            ``
+            Status:         204 NO CONTENT
+
+            ``

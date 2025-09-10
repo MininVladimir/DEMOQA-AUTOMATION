@@ -35,4 +35,9 @@ public class UserSteps implements IContextService {
     sendCredentials();
     authorization();
   }
+
+  @Step("[API] Delete user")
+  public static void deleteUser() {
+    userController.deleteUser(API.getContextType());
+  }
 }

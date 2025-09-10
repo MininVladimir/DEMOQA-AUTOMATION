@@ -20,10 +20,9 @@ public class ApplicationConfigReader {
     REGISTRATION_PAGE_URL,
     LOGIN_PAGE_URL,
     BASE_URI,
-    USER_REGISTRATION_SERVICE_ENDPOINT,
+    USER_SERVICE_ENDPOINT,
     GENERATE_TOKEN_SERVICE_ENDPOINT,
-    SEND_CREDENTIAL_SERVICE_ENDPOINT,
-    USER_AUTHORIZATION_SERVICE_ENDPOINT
+    SEND_CREDENTIAL_SERVICE_ENDPOINT
   }
 
   public static String getApplicationConfigValue(AppConfigKey key) {
@@ -33,10 +32,9 @@ public class ApplicationConfigReader {
       case REGISTRATION_PAGE_URL -> applicationConfig.registrationPageUrl();
       case LOGIN_PAGE_URL -> applicationConfig.loginPageUrl();
       case BASE_URI -> applicationConfig.baseUri();
-      case USER_REGISTRATION_SERVICE_ENDPOINT -> applicationConfig.userRegistrationServiceEndPoint();
+      case USER_SERVICE_ENDPOINT -> applicationConfig.userServiceEndPoint();
       case GENERATE_TOKEN_SERVICE_ENDPOINT -> applicationConfig.generateTokenServiceEndPoint();
       case SEND_CREDENTIAL_SERVICE_ENDPOINT -> applicationConfig.sendCredentialServiceEndPoint();
-      case USER_AUTHORIZATION_SERVICE_ENDPOINT -> applicationConfig.userAuthorizationServiceEndPoint();
     };
   }
 }

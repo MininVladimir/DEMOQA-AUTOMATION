@@ -13,17 +13,17 @@ public class LoginPageSteps {
   static UserController userController = new UserController();
   static LoginPage loginPage = new LoginPage();
 
-  @Step("[UI] Set 'userName' input")
+  @Step("[UI] Set 'UserName' input")
   private static void setUserNameInput() {
     loginPage.setUserNameInput(UiContextHolder.getContext().getUsername());
   }
 
-  @Step("[UI] Set 'password' input")
+  @Step("[UI] Set 'Password' input")
   private static void setPasswordInput() {
     loginPage.setPasswordInput(UiContextHolder.getContext().getPassword());
   }
 
-  @Step("[UI] Click 'login' button'")
+  @Step("[UI] Click 'Login' button'")
   private static void registerButtonClick() {
     loginPage.loginButtonClick();
   }
@@ -33,9 +33,9 @@ public class LoginPageSteps {
     loginPage.verifyPageUrl(getApplicationConfigValue(LOGIN_PAGE_URL));
   }
 
-  @Step("[UI] Verify [Login] page title")
-  private static void verifyLoginPageTitle() {
-    loginPage.verifyPageTitle("Login");
+  @Step("[UI] Verify visibility of 'Login' button")
+  private static void verifyVisibilityOfLoginButton() {
+    loginPage.verifyVisibilityOfLoginButton();
   }
 
   @Step("[UI] Login")
@@ -58,6 +58,6 @@ public class LoginPageSteps {
   @Step("[UI] Verify [Login] page is opened")
   public static void verifyLoginPageIsOpened() {
     verifyLoginPageUrl();
-    verifyLoginPageTitle();
+    verifyVisibilityOfLoginButton();
   }
 }

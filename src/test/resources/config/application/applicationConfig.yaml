@@ -6,7 +6,6 @@ loginPageUrl: https://demoqa.com/login
 
 #API ENDPOINTS
 baseUri: https://demoqa.com
-userRegistrationServiceEndPoint: /Account/v1/User
+userServiceEndPoint: /Account/v1/User/
 generateTokenServiceEndPoint: /Account/v1/GenerateToken
 sendCredentialServiceEndPoint: /Account/v1/Login
-userAuthorizationServiceEndPoint: /Account/v1/User/

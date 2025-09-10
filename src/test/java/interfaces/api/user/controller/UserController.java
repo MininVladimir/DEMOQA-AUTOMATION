@@ -12,10 +12,10 @@ import org.junit.jupiter.api.Assertions;
 
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.GENERATE_TOKEN_SERVICE_ENDPOINT;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.SEND_CREDENTIAL_SERVICE_ENDPOINT;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.USER_AUTHORIZATION_SERVICE_ENDPOINT;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.USER_REGISTRATION_SERVICE_ENDPOINT;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.USER_SERVICE_ENDPOINT;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.StatusCodeType.CREATED;
+import static enums.StatusCodeType.NO_CONTENT;
 import static interfaces.api.specifications.Specifications.removeSpecifications;
 import static interfaces.api.specifications.Specifications.installSpecification;
 import static interfaces.api.specifications.Specifications.requestSpecification;
@@ -42,7 +42,7 @@ public class UserController implements IContextService {
     UserRegistrationResponse userRegistrationResponse = given()
       .body(userRegistrationRequest)
       .when()
-      .post(getApplicationConfigValue(USER_REGISTRATION_SERVICE_ENDPOINT))
+      .post(getApplicationConfigValue(USER_SERVICE_ENDPOINT))
       .then()
       .extract().response().as(UserRegistrationResponse.class);
 
@@ -121,7 +121,7 @@ public class UserController implements IContextService {
     UserAuthorizationResponse userAuthorizationResponse = given()
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
       .when()
-      .get(getApplicationConfigValue(USER_AUTHORIZATION_SERVICE_ENDPOINT) + IContextService.getUserIdFromContext(contextType))
+      .get(getApplicationConfigValue(USER_SERVICE_ENDPOINT) + IContextService.getUserIdFromContext(contextType))
       .then()
       .extract().response().as(UserAuthorizationResponse.class);
 
@@ -132,5 +132,19 @@ public class UserController implements IContextService {
       () -> Assertions.assertEquals(IContextService.getUsernameFromContext(contextType), userAuthorizationResponse.username()),
       () -> Assertions.assertTrue(userAuthorizationResponse.books().isEmpty())
     );
+  }
+
+  public void deleteUser(String contextType) {
+    installSpecification(
+      requestSpecification(),
+      responseSpecification(NO_CONTENT.getStatusCode())
+    );
+
+    given()
+      .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
+      .when()
+      .delete(getApplicationConfigValue(USER_SERVICE_ENDPOINT) + IContextService.getUserIdFromContext(contextType));
+
+    removeSpecifications();
   }
 }

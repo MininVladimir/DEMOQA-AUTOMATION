@@ -6,10 +6,9 @@ public record ApplicationConfig(
   String registrationPageUrl,
   String loginPageUrl,
   String baseUri,
-  String userRegistrationServiceEndPoint,
+  String userServiceEndPoint,
   String generateTokenServiceEndPoint,
-  String sendCredentialServiceEndPoint,
-  String userAuthorizationServiceEndPoint) {
+  String sendCredentialServiceEndPoint) {
 
   public ApplicationConfig(
     String faviconUrl,
@@ -17,18 +16,16 @@ public record ApplicationConfig(
     String registrationPageUrl,
     String loginPageUrl,
     String baseUri,
-    String userRegistrationServiceEndPoint,
+    String userServiceEndPoint,
     String generateTokenServiceEndPoint,
-    String sendCredentialServiceEndPoint,
-    String userAuthorizationServiceEndPoint) {
+    String sendCredentialServiceEndPoint) {
     this.faviconUrl = faviconUrl;
     this.profilePageUrl = profilePageUrl;
     this.registrationPageUrl = registrationPageUrl;
     this.loginPageUrl = loginPageUrl;
     this.baseUri = baseUri;
-    this.userRegistrationServiceEndPoint = userRegistrationServiceEndPoint;
+    this.userServiceEndPoint = userServiceEndPoint;
     this.generateTokenServiceEndPoint = generateTokenServiceEndPoint;
     this.sendCredentialServiceEndPoint = sendCredentialServiceEndPoint;
-    this.userAuthorizationServiceEndPoint = userAuthorizationServiceEndPoint;
   }
 }

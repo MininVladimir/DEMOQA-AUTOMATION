@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -44,5 +45,9 @@ public abstract class BasePage implements IBasePage, IContextService {
 
   public void verifyAlertMessage(String expectedResult) {
     Assertions.assertEquals(expectedResult, switchTo().alert().getText());
+  }
+
+  public void verifyVisibilityOfElement(By locator) {
+    $(locator).shouldBe(visible);
   }
 }

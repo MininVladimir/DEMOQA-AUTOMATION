@@ -2,7 +2,8 @@ package enums;
 
 public enum StatusCodeType {
   OK(200),
-  CREATED(201);
+  CREATED(201),
+  NO_CONTENT(204);
 
   private final int statusCode;
 

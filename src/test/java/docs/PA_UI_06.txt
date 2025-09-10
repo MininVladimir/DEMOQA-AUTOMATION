@@ -5,4 +5,4 @@ Scenario:   [PA][UI] Logout
     Given:  Opened [Profile] page by new registered user
     When:   Click "Log out" button
     Then:   Page url -> https://demoqa.com/login
-    And:    Title of page -> "Login"
+    And:    "Login" button is visible
