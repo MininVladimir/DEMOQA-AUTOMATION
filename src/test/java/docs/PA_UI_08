@@ -1,0 +1,10 @@
+Feature: PA_UI_08
+Owner: Vladimir Minin
+
+Scenario:   [PA][API] Delete user
+    Given:  Opened [Profile] page by new registered user
+    When:   Click on "Delete Account" button
+    And:    Click "OK" in modal window
+    And:    Modal window with message "User deleted." appears
+    And:    Click "OK" in modal window
+    Then:   Page url -> https://demoqa.com/login
