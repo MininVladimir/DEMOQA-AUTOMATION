@@ -50,4 +50,8 @@ public abstract class BasePage implements IBasePage, IContextService {
   public void verifyVisibilityOfElement(By locator) {
     $(locator).shouldBe(visible);
   }
+
+  public void acceptAlert() {
+    switchTo().alert().accept();
+  }
 }

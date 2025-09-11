@@ -28,14 +28,14 @@ public class LoginPageSteps {
     loginPage.loginButtonClick();
   }
 
-  @Step("[UI] Verify [Login] page url")
-  private static void verifyLoginPageUrl() {
-    loginPage.verifyPageUrl(getApplicationConfigValue(LOGIN_PAGE_URL));
-  }
-
   @Step("[UI] Verify visibility of 'Login' button")
   private static void verifyVisibilityOfLoginButton() {
     loginPage.verifyVisibilityOfLoginButton();
+  }
+
+  @Step("[UI] Verify [Login] page url")
+  public static void verifyLoginPageUrl() {
+    loginPage.verifyPageUrl(getApplicationConfigValue(LOGIN_PAGE_URL));
   }
 
   @Step("[UI] Login")
