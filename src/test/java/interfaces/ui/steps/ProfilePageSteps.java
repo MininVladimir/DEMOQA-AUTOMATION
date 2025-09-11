@@ -8,6 +8,7 @@ import static core.config.application.applicationConfigReader.ApplicationConfigR
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.PROFILE_PAGE_URL;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.ContextType.UI;
+import static enums.ResultType.USER_DELETED;
 
 public class ProfilePageSteps {
   static UserController userController = new UserController();
@@ -36,6 +37,22 @@ public class ProfilePageSteps {
   @Step("[UI] Verify username")
   private static void verifyUsername() {
     profilePage.verifyUsername(UI.getContextType());
+  }
+
+  @Step("[UI] Click 'Delete Account' button")
+  private static void deleteAccountButtonClick() {
+    profilePage.deleteAccountButtonClick();
+  }
+
+  @Step("[UI] Click 'OK' button in modal window")
+  private static void deleteUserConfirmation() {
+    profilePage.deleteUserConfirmation();
+  }
+
+  @Step("[UI] Verify alert message and click 'OK' button")
+  private static void verifyAlertMessageAndAccept() {
+    profilePage.verifyAlertMessage(USER_DELETED.getResult());
+    profilePage.acceptAlert();
   }
 
   @Step("[UI] Verify [Profile] page is opened")
@@ -70,5 +87,12 @@ public class ProfilePageSteps {
   @Step("[UI] Click 'Logout' button")
   public static void logoutButtonClick() {
     profilePage.logoutButtonClick();
+  }
+
+  @Step("[UI] Delete user")
+  public static void deleteUser() {
+    deleteAccountButtonClick();
+    deleteUserConfirmation();
+    verifyAlertMessageAndAccept();
   }
 }

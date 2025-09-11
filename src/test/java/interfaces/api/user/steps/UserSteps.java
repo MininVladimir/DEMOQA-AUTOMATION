@@ -9,11 +9,6 @@ import static enums.ContextType.API;
 public class UserSteps implements IContextService {
   static UserController userController = new UserController();
 
-  @Step("[API] Registration")
-  public static void registration() {
-    userController.registration(API.getContextType());
-  }
-
   @Step("[API] Generate token")
   private static void generateToken() {
     userController.generateToken(API.getContextType());
@@ -27,6 +22,11 @@ public class UserSteps implements IContextService {
   @Step("[API] Authorization")
   private static void authorization() {
     userController.authorization(API.getContextType());
+  }
+
+  @Step("[API] Registration")
+  public static void registration() {
+    userController.registration(API.getContextType());
   }
 
   @Step("[API] Login")

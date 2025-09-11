@@ -22,7 +22,7 @@ import static interfaces.ui.steps.ProfilePageSteps.verifyProfilePageIsOpened;
 public class LoginNewUserTest extends UiBaseTest {
 
   @BeforeEach
-  @Step("Register new user with api and open login page")
+  @Step("Register new user with api and open [Login] page")
   public void registerNewUserWithApiAndOpenLoginPage() {
     registration();
     openLoginPage();
