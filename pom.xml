@@ -30,6 +30,7 @@
         <jackson-dataformat-yaml.version>2.18.2</jackson-dataformat-yaml.version>
         <rest-assured.version>5.5.6</rest-assured.version>
         <allure-selenide.version>2.29.1</allure-selenide.version>
+        <allure-rest-assured>2.25.0</allure-rest-assured>
     </properties>
 
     <dependencies>
@@ -137,6 +138,12 @@
             <version>${allure-selenide.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure-rest-assured}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -151,7 +158,6 @@
                     <reportDirectory>${project.basedir}\allure-reports</reportDirectory>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

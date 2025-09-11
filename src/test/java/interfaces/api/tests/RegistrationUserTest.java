@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static core.owners.Owners.VLADIMIR_MININ;
-import static docs.tetsDescriptions.TestDescriptions.REG_API_01;
+import static docs.testDescriptions.TestDescriptions.REG_API_01;
 import static interfaces.api.user.steps.UserSteps.registration;
 
 @ExtendWith(RetryExtension.class)

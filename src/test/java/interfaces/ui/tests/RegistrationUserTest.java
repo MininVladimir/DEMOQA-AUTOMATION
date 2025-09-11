@@ -11,7 +11,7 @@ import core.listener.retry.RetryExtension;
 import interfaces.ui.tests.baseTest.UiBaseTest;
 
 import static core.owners.Owners.VLADIMIR_MININ;
-import static docs.tetsDescriptions.TestDescriptions.REG_UI_04;
+import static docs.testDescriptions.TestDescriptions.REG_UI_04;
 import static interfaces.ui.steps.RegistrationPageSteps.registration;
 
 @ExtendWith(RetryExtension.class)

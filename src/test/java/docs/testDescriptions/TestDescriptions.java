@@ -1,4 +1,4 @@
-package docs.tetsDescriptions;
+package docs.testDescriptions;
 
 public class TestDescriptions {
   public static final String REG_API_01 = "REG_API_01 - Registration user";
