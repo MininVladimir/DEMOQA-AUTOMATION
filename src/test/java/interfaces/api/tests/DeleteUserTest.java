@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static core.owners.Owners.VLADIMIR_MININ;
-import static docs.tetsDescriptions.TestDescriptions.PA_API_07;
+import static docs.testDescriptions.TestDescriptions.PA_API_07;
 import static interfaces.api.user.steps.UserSteps.deleteUser;
 import static interfaces.api.user.steps.UserSteps.login;
 import static interfaces.api.user.steps.UserSteps.registration;

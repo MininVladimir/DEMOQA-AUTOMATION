@@ -12,7 +12,7 @@ import interfaces.ui.tests.baseTest.UiBaseTest;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static core.owners.Owners.VLADIMIR_MININ;
-import static docs.tetsDescriptions.TestDescriptions.PA_UI_03;
+import static docs.testDescriptions.TestDescriptions.PA_UI_03;
 import static interfaces.ui.steps.ProfilePageSteps.login;
 import static interfaces.ui.steps.ProfilePageSteps.openDomainResource;
 import static interfaces.ui.steps.ProfilePageSteps.registration;
