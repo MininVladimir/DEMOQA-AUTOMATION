@@ -6,6 +6,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,6 +21,7 @@ import static interfaces.api.user.steps.UserSteps.registration;
 public class DeleteUserTest extends ApiBaseTest {
 
   @BeforeEach
+  @Step("[API] Authorize new user")
   public void authorizeNewUser() {
     registration();
     login();
