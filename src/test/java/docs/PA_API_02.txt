@@ -3,7 +3,7 @@ Owner: Vladimir Minin
 
 Scenario:   [PA][API] Login new user
     Given:  Registered new user with API
-    When:   Send request to generate token service:
+    When:   Send request to user service:
             ``
             Request method: POST
             Request URI:    https://demoqa.com/Account/v1/GenerateToken
@@ -13,7 +13,7 @@ Scenario:   [PA][API] Login new user
                                 "password": "{password}"
                             }
             ``
-    And:    Get response from generate token service:
+    And:    Get response from user service:
             ``
             Status:         200 OK
             Content-Type:   application/json;
@@ -25,7 +25,7 @@ Scenario:   [PA][API] Login new user
                                 "result":   "User authorized successfully."
                             }
             ``
-    And:    Send request to login service:
+    And:    Send request to user service:
             ``
             Request method: POST
             Request URI:    https://demoqa.com/Account/v1/Login
@@ -35,7 +35,7 @@ Scenario:   [PA][API] Login new user
                                 "password": "{password}"
                             }
             ``
-    And:   Get response from login service:
+    And:   Get response from user service:
             ``
             Status:         200 OK
             Content-Type:   application/json;
