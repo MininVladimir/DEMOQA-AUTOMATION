@@ -24,7 +24,7 @@ import static interfaces.ui.steps.ProfilePageSteps.setAuthUserCookiesAndOpenProf
 public class DeleteUserTest extends UiBaseTest {
 
   @BeforeEach
-  @Step("Opened [Profile] page by new registered user")
+  @Step("[UI] Open [Profile] page by new registered user")
   public void OpenProfilePageByNewRegisteredUser() {
     openDomainResource();
     registration();

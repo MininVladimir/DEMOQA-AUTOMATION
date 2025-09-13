@@ -164,10 +164,15 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+                    <parallel>classes</parallel>
+                    <forkCount>4</forkCount>
+                    <threadCount>1</threadCount>
+                    <reuseForks>true</reuseForks>
                     <properties>
                         <configurationParameters>
                             junit.jupiter.execution.parallel.enabled=true
                             junit.jupiter.execution.parallel.mode.default=concurrent
+                            junit.jupiter.execution.parallel.mode.classes.default=concurrent
                         </configurationParameters>
                     </properties>
                     <testFailureIgnore>true</testFailureIgnore>

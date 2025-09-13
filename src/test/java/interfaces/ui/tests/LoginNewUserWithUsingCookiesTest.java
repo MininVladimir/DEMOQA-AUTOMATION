@@ -22,7 +22,7 @@ import static interfaces.ui.steps.ProfilePageSteps.setAuthUserCookiesAndOpenProf
 public class LoginNewUserWithUsingCookiesTest extends UiBaseTest {
 
   @BeforeEach
-  @Step("Open domain resource and login new registered user with api")
+  @Step("[API] Open domain resource and login new registered user")
   public void openDomainResourceAndLoginNewRegisteredUserWithApi() {
     openDomainResource();
     registration();
