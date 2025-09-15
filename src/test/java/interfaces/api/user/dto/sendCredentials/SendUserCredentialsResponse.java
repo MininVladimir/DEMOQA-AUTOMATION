@@ -3,7 +3,14 @@ package interfaces.api.user.dto.sendCredentials;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record SendUserCredentialsResponse(String userId, String username, String password, String token, String expiresDate, String createdDate, Boolean isActive) {
+public record SendUserCredentialsResponse(
+  String userId,
+  String username,
+  String password,
+  String token,
+  String expiresDate,
+  String createdDate,
+  Boolean isActive) {
 
   @JsonIgnoreProperties(ignoreUnknown = true)
   public SendUserCredentialsResponse(

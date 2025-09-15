@@ -22,7 +22,8 @@ public class ApplicationConfigReader {
     BASE_URI,
     USER_SERVICE_ENDPOINT,
     GENERATE_TOKEN_SERVICE_ENDPOINT,
-    SEND_CREDENTIAL_SERVICE_ENDPOINT
+    SEND_CREDENTIAL_SERVICE_ENDPOINT,
+    BOOK_STORE_SERVICE_ENDPOINT
   }
 
   public static String getApplicationConfigValue(AppConfigKey key) {
@@ -35,6 +36,7 @@ public class ApplicationConfigReader {
       case USER_SERVICE_ENDPOINT -> applicationConfig.userServiceEndPoint();
       case GENERATE_TOKEN_SERVICE_ENDPOINT -> applicationConfig.generateTokenServiceEndPoint();
       case SEND_CREDENTIAL_SERVICE_ENDPOINT -> applicationConfig.sendCredentialServiceEndPoint();
+      case BOOK_STORE_SERVICE_ENDPOINT -> applicationConfig.bookStoreServiceEndpoint();
     };
   }
 }

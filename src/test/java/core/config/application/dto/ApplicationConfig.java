@@ -8,7 +8,8 @@ public record ApplicationConfig(
   String baseUri,
   String userServiceEndPoint,
   String generateTokenServiceEndPoint,
-  String sendCredentialServiceEndPoint) {
+  String sendCredentialServiceEndPoint,
+  String bookStoreServiceEndpoint) {
 
   public ApplicationConfig(
     String faviconUrl,
@@ -18,7 +19,8 @@ public record ApplicationConfig(
     String baseUri,
     String userServiceEndPoint,
     String generateTokenServiceEndPoint,
-    String sendCredentialServiceEndPoint) {
+    String sendCredentialServiceEndPoint,
+    String bookStoreServiceEndpoint) {
     this.faviconUrl = faviconUrl;
     this.profilePageUrl = profilePageUrl;
     this.registrationPageUrl = registrationPageUrl;
@@ -27,5 +29,6 @@ public record ApplicationConfig(
     this.userServiceEndPoint = userServiceEndPoint;
     this.generateTokenServiceEndPoint = generateTokenServiceEndPoint;
     this.sendCredentialServiceEndPoint = sendCredentialServiceEndPoint;
+    this.bookStoreServiceEndpoint = bookStoreServiceEndpoint;
   }
 }

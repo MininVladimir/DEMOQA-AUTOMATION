@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public record UserRegistrationResponse(String userId, String username, List<Object> books) {
+public record UserRegistrationResponse(
+  String userId,
+  String username,
+  List<Object> books) {
 
   @JsonIgnoreProperties(ignoreUnknown = true)
   public UserRegistrationResponse(
