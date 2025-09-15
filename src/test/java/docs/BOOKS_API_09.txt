@@ -1,0 +1,31 @@
+Feature: BOOKS_API_09
+Owner: Vladimir Minin
+
+Scenario:   [BOOKS][API] Get book list
+    When:   Send request to book store service:
+            ``
+            Request method: GET
+            Request URI:    https://demoqa.com/BookStore/v1/Books
+            Headers:        Content-Type=application/json
+            ``
+    Then:   Get response from book store service:
+            ``
+            Status:         200 OK
+            Content-Type:   application/json;
+                            charset=utf-8
+            Body:           {
+                                "books": [
+                                    {
+                                      "isbn": {isbn},
+                                      "title": {title},
+                                      "subTitle": {subTitle},
+                                      "author": {author},
+                                      "publish_date": {publishDate},
+                                      "publisher": {publisher},
+                                      "pages": {pages},
+                                      "description": {description},
+                                      "website": {website}
+                                    }
+                                ]
+                            }
+            ``
