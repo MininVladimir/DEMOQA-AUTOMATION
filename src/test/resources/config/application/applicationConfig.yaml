@@ -9,3 +9,4 @@ baseUri: https://demoqa.com
 userServiceEndPoint: /Account/v1/User/
 generateTokenServiceEndPoint: /Account/v1/GenerateToken
 sendCredentialServiceEndPoint: /Account/v1/Login
+bookStoreServiceEndpoint: /BookStore/v1/Books/

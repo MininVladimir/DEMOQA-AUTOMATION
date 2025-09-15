@@ -9,4 +9,5 @@ public class TestDescriptions {
   public static final String PA_UI_06 = "PA_UI_06 - Logout";
   public static final String PA_API_07 = "PA_API_07 - Delete user";
   public static final String PA_UI_08 = "PA_UI_08 - Delete user";
+  public static final String BOOKS_API_09 = "BOOKS_API_09 - Get book list";
 }
