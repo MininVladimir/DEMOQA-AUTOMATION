@@ -1,9 +1,9 @@
-package interfaces.api.bookStore.dto;
+package interfaces.api.bookStore.dto.bookStoreList;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record GetBookListResponse(
+public record GetBookStoreListResponse(
   String isbn,
   String title,
   String subTitle,
@@ -15,7 +15,7 @@ public record GetBookListResponse(
   String website) {
 
   @JsonIgnoreProperties(ignoreUnknown = true)
-  public GetBookListResponse(
+  public GetBookStoreListResponse(
     @JsonProperty("isbn") String isbn,
     @JsonProperty("title") String title,
     @JsonProperty("subTitle") String subTitle,

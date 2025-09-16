@@ -6,6 +6,7 @@ public class ApiContext {
   private String userId;
   private String token;
   private String expiresDate;
+  private String isbn;
 
   public String getUsername() {
     return username;
@@ -45,5 +46,13 @@ public class ApiContext {
 
   public void setExpiresDate(String expiresDate) {
     this.expiresDate = expiresDate;
+  }
+
+  public String getIsbn() {
+    return isbn;
+  }
+
+  public void setIsbn(String isbn) {
+    this.isbn = isbn;
   }
 }

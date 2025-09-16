@@ -86,4 +86,20 @@ public interface IContextService {
       default -> throw new IllegalStateException("Unexpected value: " + contextType);
     }
   }
+
+  static void setIsbnToContext(String contextType, String isbn) {
+    switch (contextType) {
+      case "api" -> ApiContextHolder.getContext().setIsbn(isbn);
+      case "ui" -> UiContextHolder.getContext().setIsbn(isbn);
+      default -> throw new IllegalStateException("Unexpected value: " + contextType);
+    }
+  }
+
+  static String getIsbnFromContext(String contextType) {
+    return switch (contextType) {
+      case "api" -> ApiContextHolder.getContext().getIsbn();
+      case "ui" -> UiContextHolder.getContext().getIsbn();
+      default -> throw new IllegalStateException("Unexpected value: " + contextType);
+    };
+  }
 }

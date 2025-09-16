@@ -11,7 +11,7 @@ public class Generator {
                                          int digitsCount,
                                          int symbolsCount) {
       String alphabet = "abcdefghijklmnopqrstuvwxyz";
-      String numbers = "1234567890";
+      String digits = "1234567890";
       String symbols = "!@#$%^&*";
       Random random = new Random();
       StringBuilder myString = new StringBuilder();
@@ -22,7 +22,7 @@ public class Generator {
         myString.append(Character.toUpperCase(alphabet.charAt(random.nextInt(alphabet.length()))));
       }
       for (int i = 0; i < digitsCount; i++) {
-        myString.append(numbers.charAt(random.nextInt(numbers.length())));
+        myString.append(digits.charAt(random.nextInt(digits.length())));
       }
       for (int i = 0; i < symbolsCount; i++) {
         myString.append(symbols.charAt(random.nextInt(symbols.length())));
