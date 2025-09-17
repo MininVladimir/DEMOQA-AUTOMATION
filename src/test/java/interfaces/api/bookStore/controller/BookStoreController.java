@@ -7,6 +7,7 @@ import interfaces.api.bookStore.dto.userList.AddBookRequest;
 import interfaces.api.bookStore.service.IBookStoreController;
 import org.junit.jupiter.api.Assertions;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.BOOK_STORE_SERVICE_ENDPOINT;
@@ -42,24 +43,24 @@ public class BookStoreController implements IContextService, IRestAssuredListene
     return bookList;
   }
 
-  public void addBook(String contextType, List<GetBookStoreListResponse> bookList) {
+  public void addBook(String contextType, List<GetBookStoreListResponse> bookList, int bookCount) {
     installSpecification(
       requestSpecification(),
       responseSpecification(CREATED.getStatusCode())
     );
 
-    AddBookRequest.CollectionOfIsbns collectionOfIsbns = IBookStoreController.getRandomBook(bookList);
-    IContextService.setIsbnToContext(contextType, collectionOfIsbns.isbn());
+    List<HashMap<String, String>> bookCollection = IBookStoreController.getBookCollection(bookList, bookCount);
+    IContextService.setIsbnToContext(contextType, bookCollection);
 
-    AddBookRequest addBookRequest = new AddBookRequest(IContextService.getUserIdFromContext(contextType), List.of(collectionOfIsbns));
-    String isbnOfAddedBook = given()
+    AddBookRequest addBookRequest = new AddBookRequest(IContextService.getUserIdFromContext(contextType), bookCollection);
+    List<HashMap<String, String>> isbnOfAddedBook = given()
       .filter(allureFilter)
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
       .body(addBookRequest)
       .when()
       .post(getApplicationConfigValue(BOOK_STORE_SERVICE_ENDPOINT))
       .then()
-      .extract().response().jsonPath().getString("books[0].isbn");
+      .extract().response().jsonPath().getList("books");
 
     removeSpecifications();
 

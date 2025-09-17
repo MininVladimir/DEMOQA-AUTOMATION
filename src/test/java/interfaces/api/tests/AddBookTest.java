@@ -17,7 +17,7 @@ import static interfaces.api.user.steps.UserSteps.login;
 import static interfaces.api.user.steps.UserSteps.registration;
 
 @ExtendWith(RetryExtension.class)
-public class AddBookToUserBinTest extends ApiBaseTest {
+public class AddBookTest extends ApiBaseTest {
 
   @BeforeEach
   public void loginNewUser() {

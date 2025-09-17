@@ -1,5 +1,8 @@
 package core.context.ui;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class UiContext {
   private String firstname;
   private String lastname;
@@ -8,7 +11,7 @@ public class UiContext {
   private String userId;
   private String token;
   private String expiresDate;
-  private String isbn;
+  private List<HashMap<String, String>> bookCollection;
 
   public String getFirstname() {
     return firstname;
@@ -66,11 +69,11 @@ public class UiContext {
     this.expiresDate = expiresDate;
   }
 
-  public String getIsbn() {
-    return isbn;
+  public List<HashMap<String, String>> getBookCollection() {
+    return bookCollection;
   }
 
-  public void setIsbn(String isbn) {
-    this.isbn = isbn;
+  public void setBookCollection(List<HashMap<String, String>> bookCollection) {
+    this.bookCollection = bookCollection;
   }
 }
