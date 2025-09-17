@@ -3,6 +3,9 @@ package core.context.service;
 import core.context.api.ApiContextHolder;
 import core.context.ui.UiContextHolder;
 
+import java.util.HashMap;
+import java.util.List;
+
 import static core.generator.Generator.stringGenerator;
 
 public interface IContextService {
@@ -87,18 +90,18 @@ public interface IContextService {
     }
   }
 
-  static void setIsbnToContext(String contextType, String isbn) {
+  static void setIsbnToContext(String contextType, List<HashMap<String, String>> bookCollection) {
     switch (contextType) {
-      case "api" -> ApiContextHolder.getContext().setIsbn(isbn);
-      case "ui" -> UiContextHolder.getContext().setIsbn(isbn);
+      case "api" -> ApiContextHolder.getContext().setBookCollection(bookCollection);
+      case "ui" -> UiContextHolder.getContext().setBookCollection(bookCollection);
       default -> throw new IllegalStateException("Unexpected value: " + contextType);
     }
   }
 
-  static String getIsbnFromContext(String contextType) {
+  static List<HashMap<String, String>> getIsbnFromContext(String contextType) {
     return switch (contextType) {
-      case "api" -> ApiContextHolder.getContext().getIsbn();
-      case "ui" -> UiContextHolder.getContext().getIsbn();
+      case "api" -> ApiContextHolder.getContext().getBookCollection();
+      case "ui" -> UiContextHolder.getContext().getBookCollection();
       default -> throw new IllegalStateException("Unexpected value: " + contextType);
     };
   }

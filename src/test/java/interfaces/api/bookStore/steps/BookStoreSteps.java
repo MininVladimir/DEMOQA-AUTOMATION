@@ -18,6 +18,6 @@ public class BookStoreSteps {
 
   @Step("[API] Add book")
   public static void addBook() {
-    bookStoreController.addBook(API.getContextType(), getBookList());
+    bookStoreController.addBook(API.getContextType(), getBookList(), 2);
   }
 }
