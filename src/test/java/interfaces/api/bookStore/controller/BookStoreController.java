@@ -4,6 +4,7 @@ import core.context.service.IContextService;
 import core.listener.restAssuredListener.IRestAssuredListener;
 import interfaces.api.bookStore.dto.bookStoreList.GetBookStoreListResponse;
 import interfaces.api.bookStore.dto.userList.AddBookRequest;
+import interfaces.api.bookStore.dto.userList.AddBookResponse;
 import interfaces.api.bookStore.service.IBookStoreController;
 import org.junit.jupiter.api.Assertions;
 
@@ -60,7 +61,7 @@ public class BookStoreController implements IContextService, IRestAssuredListene
       .when()
       .post(getApplicationConfigValue(BOOK_STORE_SERVICE_ENDPOINT))
       .then()
-      .extract().response().jsonPath().getList("books");
+      .extract().response().as(AddBookResponse.class).userBookCollection();
 
     removeSpecifications();
 
