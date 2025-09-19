@@ -7,11 +7,11 @@ import java.util.List;
 
 public record AddBookRequest(
   String userId,
-  List<HashMap<String, String>> collectionOfIsbns) {
+  List<HashMap<String, Object>> collectionOfIsbns) {
 
   public AddBookRequest(
     @JsonProperty("userId") String userId,
-    @JsonProperty("collectionOfIsbns") List<HashMap<String, String>> collectionOfIsbns
+    @JsonProperty("collectionOfIsbns") List<HashMap<String, Object>> collectionOfIsbns
   ) {
     this.userId = userId;
     this.collectionOfIsbns = collectionOfIsbns;

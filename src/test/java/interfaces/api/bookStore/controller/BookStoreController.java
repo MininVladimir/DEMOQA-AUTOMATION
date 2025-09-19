@@ -49,11 +49,11 @@ public class BookStoreController implements IContextService, IRestAssuredListene
       responseSpecification(CREATED.getStatusCode())
     );
 
-    List<HashMap<String, String>> bookCollection = IBookStoreController.getBookCollection(bookList, bookCount);
-    IContextService.setIsbnToContext(contextType, bookCollection);
+    List<HashMap<String, Object>> generatedBookCollection = IBookStoreController.getBookCollection(bookList, bookCount);
+    IContextService.setBookCollectionToContext(contextType, generatedBookCollection);
 
-    AddBookRequest addBookRequest = new AddBookRequest(IContextService.getUserIdFromContext(contextType), bookCollection);
-    List<HashMap<String, String>> isbnOfAddedBook = given()
+    AddBookRequest addBookRequest = new AddBookRequest(IContextService.getUserIdFromContext(contextType), generatedBookCollection);
+    List<HashMap<String, Object>> userBookCollection = given()
       .filter(allureFilter)
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
       .body(addBookRequest)
@@ -64,6 +64,6 @@ public class BookStoreController implements IContextService, IRestAssuredListene
 
     removeSpecifications();
 
-    Assertions.assertEquals(IContextService.getIsbnFromContext(contextType), isbnOfAddedBook);
+    Assertions.assertEquals(IContextService.getBookCollectionFromContext(contextType), userBookCollection);
   }
 }
