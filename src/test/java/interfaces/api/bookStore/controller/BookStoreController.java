@@ -50,18 +50,18 @@ public class BookStoreController implements IContextService, IRestAssuredListene
       responseSpecification(CREATED.getStatusCode())
     );
 
-    List<HashMap<String, String>> generatedBookCollection = IBookStoreController.getBookCollection(bookList, bookCount);
+    List<HashMap<String, Object>> generatedBookCollection = IBookStoreController.getBookCollection(bookList, bookCount);
     IContextService.setBookCollectionToContext(contextType, generatedBookCollection);
 
     AddBookRequest addBookRequest = new AddBookRequest(IContextService.getUserIdFromContext(contextType), generatedBookCollection);
-    List<HashMap<String, String>> userBookCollection = given()
+    List<HashMap<String, Object>> userBookCollection = given()
       .filter(allureFilter)
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
       .body(addBookRequest)
       .when()
       .post(getApplicationConfigValue(BOOK_STORE_SERVICE_ENDPOINT))
       .then()
-      .extract().response().as(AddBookResponse.class).books();
+      .extract().response().jsonPath().getList("books");
 
     removeSpecifications();
 

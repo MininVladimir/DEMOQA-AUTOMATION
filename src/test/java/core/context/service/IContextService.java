@@ -90,7 +90,7 @@ public interface IContextService {
     }
   }
 
-  static void setBookCollectionToContext(String contextType, List<HashMap<String, String>> bookCollection) {
+  static void setBookCollectionToContext(String contextType, List<HashMap<String, Object>> bookCollection) {
     switch (contextType) {
       case "api" -> ApiContextHolder.getContext().setBookCollection(bookCollection);
       case "ui" -> UiContextHolder.getContext().setBookCollection(bookCollection);
@@ -98,7 +98,7 @@ public interface IContextService {
     }
   }
 
-  static List<HashMap<String, String>> getBookCollectionFromContext(String contextType) {
+  static List<HashMap<String, Object>> getBookCollectionFromContext(String contextType) {
     return switch (contextType) {
       case "api" -> ApiContextHolder.getContext().getBookCollection();
       case "ui" -> UiContextHolder.getContext().getBookCollection();

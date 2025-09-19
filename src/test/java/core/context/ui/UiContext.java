@@ -11,7 +11,7 @@ public class UiContext {
   private String userId;
   private String token;
   private String expiresDate;
-  private List<HashMap<String, String>> bookCollection;
+  private List<HashMap<String, Object>> bookCollection;
 
   public String getFirstname() {
     return firstname;
@@ -69,11 +69,11 @@ public class UiContext {
     this.expiresDate = expiresDate;
   }
 
-  public List<HashMap<String, String>> getBookCollection() {
+  public List<HashMap<String, Object>> getBookCollection() {
     return bookCollection;
   }
 
-  public void setBookCollection(List<HashMap<String, String>> bookCollection) {
+  public void setBookCollection(List<HashMap<String, Object>> bookCollection) {
     this.bookCollection = bookCollection;
   }
 }
