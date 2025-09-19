@@ -4,7 +4,6 @@ import core.context.service.IContextService;
 import core.listener.restAssuredListener.IRestAssuredListener;
 import interfaces.api.bookStore.dto.bookStoreList.GetBookStoreListResponse;
 import interfaces.api.bookStore.dto.userList.AddBookRequest;
-import interfaces.api.bookStore.dto.userList.AddBookResponse;
 import interfaces.api.bookStore.service.IBookStoreController;
 import org.junit.jupiter.api.Assertions;
 
