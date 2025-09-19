@@ -4,6 +4,7 @@ import core.context.service.IContextService;
 import core.listener.restAssuredListener.IRestAssuredListener;
 import interfaces.api.bookStore.dto.bookStoreList.GetBookStoreListResponse;
 import interfaces.api.bookStore.dto.userList.AddBookRequest;
+import interfaces.api.bookStore.dto.userList.AddBookResponse;
 import interfaces.api.bookStore.service.IBookStoreController;
 import org.junit.jupiter.api.Assertions;
 
@@ -49,21 +50,21 @@ public class BookStoreController implements IContextService, IRestAssuredListene
       responseSpecification(CREATED.getStatusCode())
     );
 
-    List<HashMap<String, String>> bookCollection = IBookStoreController.getBookCollection(bookList, bookCount);
-    IContextService.setIsbnToContext(contextType, bookCollection);
+    List<HashMap<String, String>> generatedBookCollection = IBookStoreController.getBookCollection(bookList, bookCount);
+    IContextService.setBookCollectionToContext(contextType, generatedBookCollection);
 
-    AddBookRequest addBookRequest = new AddBookRequest(IContextService.getUserIdFromContext(contextType), bookCollection);
-    List<HashMap<String, String>> isbnOfAddedBook = given()
+    AddBookRequest addBookRequest = new AddBookRequest(IContextService.getUserIdFromContext(contextType), generatedBookCollection);
+    List<HashMap<String, String>> userBookCollection = given()
       .filter(allureFilter)
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
       .body(addBookRequest)
       .when()
       .post(getApplicationConfigValue(BOOK_STORE_SERVICE_ENDPOINT))
       .then()
-      .extract().response().jsonPath().getList("books");
+      .extract().response().as(AddBookResponse.class).books();
 
     removeSpecifications();
 
-    Assertions.assertEquals(IContextService.getIsbnFromContext(contextType), isbnOfAddedBook);
+    Assertions.assertEquals(IContextService.getBookCollectionFromContext(contextType), userBookCollection);
   }
 }
