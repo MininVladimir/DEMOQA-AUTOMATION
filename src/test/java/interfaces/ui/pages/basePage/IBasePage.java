@@ -1,7 +1,7 @@
 package interfaces.ui.pages.basePage;
 
 import com.codeborne.selenide.WebDriverRunner;
-import core.context.ui.UiContextHolder;
+import core.context.ContextHolder;
 import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -14,10 +14,10 @@ public interface IBasePage {
 
   default void setAuthUserCookiesAndOpenPrivateAreaPage(String url) {
     Cookie[] cookies = {
-      new Cookie(USER_ID.getCookieName(), UiContextHolder.getContext().getUserId()),
-      new Cookie(USERNAME.getCookieName(), UiContextHolder.getContext().getUsername()),
-      new Cookie(TOKEN.getCookieName(), UiContextHolder.getContext().getToken()),
-      new Cookie(EXPIRES.getCookieName(), UiContextHolder.getContext().getExpiresDate()),
+      new Cookie(USER_ID.getCookieName(), ContextHolder.getContext().getUserId()),
+      new Cookie(USERNAME.getCookieName(), ContextHolder.getContext().getUsername()),
+      new Cookie(TOKEN.getCookieName(), ContextHolder.getContext().getToken()),
+      new Cookie(EXPIRES.getCookieName(), ContextHolder.getContext().getExpiresDate()),
     };
     for (Cookie cookie : cookies) {
       WebDriverRunner.getWebDriver().manage().addCookie(cookie);

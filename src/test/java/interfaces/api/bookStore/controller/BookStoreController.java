@@ -1,6 +1,6 @@
 package interfaces.api.bookStore.controller;
 
-import core.context.service.IContextService;
+import core.context.IContext;
 import core.listener.restAssuredListener.IRestAssuredListener;
 import interfaces.api.bookStore.dto.bookStoreList.GetBookStoreListResponse;
 import interfaces.api.bookStore.dto.userList.AddBookRequest;
@@ -23,7 +23,7 @@ import static interfaces.api.specifications.Specifications.requestSpecification;
 import static interfaces.api.specifications.Specifications.responseSpecification;
 import static io.restassured.RestAssured.given;
 
-public class BookStoreController implements IContextService, IRestAssuredListener, IBookStoreController {
+public class BookStoreController implements IContext, IRestAssuredListener, IBookStoreController {
 
   public List<GetBookStoreListResponse> getBookList() {
     installSpecification(
@@ -44,19 +44,19 @@ public class BookStoreController implements IContextService, IRestAssuredListene
     return bookList;
   }
 
-  public void addBook(String contextType, List<GetBookStoreListResponse> bookList, int bookCount) {
+  public void addBook(List<GetBookStoreListResponse> bookList, int bookCount) {
     installSpecification(
       requestSpecification(),
       responseSpecification(CREATED.getStatusCode())
     );
 
     List<HashMap<String, Object>> generatedBookCollection = IBookStoreController.getBookCollection(bookList, bookCount);
-    IContextService.setBookCollectionToContext(contextType, generatedBookCollection);
+    IContext.setBookCollectionToContext(generatedBookCollection);
 
-    AddBookRequest addBookRequest = new AddBookRequest(IContextService.getUserIdFromContext(contextType), generatedBookCollection);
+    AddBookRequest addBookRequest = new AddBookRequest(IContext.getUserIdFromContext(), generatedBookCollection);
     List<HashMap<String, Object>> userBookCollection = given()
       .filter(allureFilter)
-      .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
+      .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContext.getTokenFromContext())
       .body(addBookRequest)
       .when()
       .post(getApplicationConfigValue(BOOK_STORE_SERVICE_ENDPOINT))
@@ -65,6 +65,6 @@ public class BookStoreController implements IContextService, IRestAssuredListene
 
     removeSpecifications();
 
-    Assertions.assertEquals(IContextService.getBookCollectionFromContext(contextType), userBookCollection);
+    Assertions.assertEquals(IContext.getBookCollectionFromContext(), userBookCollection);
   }
 }

@@ -1,26 +1,24 @@
 package interfaces.ui.steps;
 
-import core.context.ui.UiContextHolder;
+import core.context.ContextHolder;
 import interfaces.api.user.controller.UserController;
 import interfaces.ui.pages.loginPage.LoginPage;
 import io.qameta.allure.Step;
 
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.LOGIN_PAGE_URL;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
-import static enums.ContextType.UI;
 
 public class LoginPageSteps {
-  static UserController userController = new UserController();
   static LoginPage loginPage = new LoginPage();
 
   @Step("[UI] Set 'UserName' input")
   private static void setUserNameInput() {
-    loginPage.setUserNameInput(UiContextHolder.getContext().getUsername());
+    loginPage.setUserNameInput(ContextHolder.getContext().getUsername());
   }
 
   @Step("[UI] Set 'Password' input")
   private static void setPasswordInput() {
-    loginPage.setPasswordInput(UiContextHolder.getContext().getPassword());
+    loginPage.setPasswordInput(ContextHolder.getContext().getPassword());
   }
 
   @Step("[UI] Click 'Login' button'")
@@ -43,11 +41,6 @@ public class LoginPageSteps {
     setUserNameInput();
     setPasswordInput();
     registerButtonClick();
-  }
-
-  @Step("[API] Registration")
-  public static void registration() {
-    userController.registration(UI.getContextType());
   }
 
   @Step("[UI] Open [Login] page")

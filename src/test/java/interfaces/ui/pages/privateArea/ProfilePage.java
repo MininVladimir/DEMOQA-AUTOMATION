@@ -1,6 +1,6 @@
 package interfaces.ui.pages.privateArea;
 
-import core.context.service.IContextService;
+import core.context.IContext;
 import org.openqa.selenium.By;
 import interfaces.ui.pages.basePage.BasePage;
 
@@ -14,8 +14,8 @@ public class ProfilePage extends BasePage {
     setAuthUserCookiesAndOpenPrivateAreaPage(url);
   }
 
-  public void verifyUsername(String contextType) {
-    verifyTextOfElement(usernameValueLocator, IContextService.getUsernameFromContext(contextType));
+  public void verifyUsername() {
+    verifyTextOfElement(usernameValueLocator, IContext.getUsernameFromContext());
   }
 
   public void logoutButtonClick() {

@@ -7,7 +7,6 @@ import io.qameta.allure.Step;
 import java.util.List;
 
 import static core.generator.Generator.getRandomNumberInTheRange;
-import static enums.ContextType.API;
 
 public class BookStoreSteps {
   static BookStoreController bookStoreController = new BookStoreController();
@@ -20,7 +19,6 @@ public class BookStoreSteps {
   @Step("[API] Add book")
   public static void addBook() {
     bookStoreController.addBook(
-      API.getContextType(),
       getBookList(),
       getRandomNumberInTheRange(2, 4)
     );
