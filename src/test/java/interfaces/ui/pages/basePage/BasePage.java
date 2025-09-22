@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.url;
 
-public abstract class BasePage implements IBasePage, IContext {
+public abstract class BasePage implements IContext {
 
   public void openPage(String url) {
     open(url);

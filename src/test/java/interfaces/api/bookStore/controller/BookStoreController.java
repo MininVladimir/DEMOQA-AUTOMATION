@@ -44,7 +44,7 @@ public class BookStoreController implements IContext, IRestAssuredListener, IBoo
     return bookList;
   }
 
-  public void addBook(List<GetBookStoreListResponse> bookList, int bookCount) {
+  public void addBookCollection(List<GetBookStoreListResponse> bookList, int bookCount) {
     installSpecification(
       requestSpecification(),
       responseSpecification(CREATED.getStatusCode())

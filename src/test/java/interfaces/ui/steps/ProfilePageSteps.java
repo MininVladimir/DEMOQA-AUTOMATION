@@ -65,4 +65,14 @@ public class ProfilePageSteps {
     deleteUserConfirmation();
     verifyAlertMessageAndAccept();
   }
+
+  @Step("[UI] Verify non-empty row count equals size of user book collection")
+  public static void verifyNonEmptyRowCountEqualsSizeOfUserBookCollection() {
+    profilePage.verifyNonEmptyRowCountEqualsSizeOfUserBookCollection();
+  }
+
+  @Step("[UI] Verify table data")
+  public static void verifyTableData() {
+    profilePage.verifyTableData();
+  }
 }

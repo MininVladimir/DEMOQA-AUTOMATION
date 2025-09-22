@@ -1,7 +1,7 @@
 Feature: PA_API_10
 Owner: Vladimir Minin
 
-Scenario:   [BOOKS][API] Add book
+Scenario:   [PA][API] Add book
     Given:  Authorized new user with API
     When:   Send request to book store service:
             ``

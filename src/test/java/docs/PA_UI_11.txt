@@ -1,0 +1,11 @@
+Feature: PA_UI_11
+Owner: Vladimir Minin
+
+Scenario:   [PA][UI] Add book
+    Given:  New registered user with added book collection
+    When:   Open [Profile] page
+    Then:   Non-empty rows of table = numbers of added books
+    And:    For each row, the column values are equal to the corresponding field values of the added book:
+                {Title} -> {title}
+                {Author} -> {author}
+                {Publisher} -> {publisher}

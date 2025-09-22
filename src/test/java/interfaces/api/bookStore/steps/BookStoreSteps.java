@@ -16,9 +16,9 @@ public class BookStoreSteps {
     return bookStoreController.getBookList();
   }
 
-  @Step("[API] Add book")
-  public static void addBook() {
-    bookStoreController.addBook(
+  @Step("[API] Add book collection")
+  public static void addBookCollection() {
+    bookStoreController.addBookCollection(
       getBookList(),
       getRandomNumberInTheRange(2, 4)
     );
