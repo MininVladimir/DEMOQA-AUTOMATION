@@ -8,7 +8,7 @@ import interfaces.api.user.dto.registration.UserRegistrationRequest;
 import interfaces.api.user.dto.registration.UserRegistrationResponse;
 import interfaces.api.user.dto.sendCredentials.SendUserCredentialsRequest;
 import interfaces.api.user.dto.sendCredentials.SendUserCredentialsResponse;
-import core.context.service.IContextService;
+import core.context.IContext;
 import org.junit.jupiter.api.Assertions;
 
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.GENERATE_TOKEN_SERVICE_ENDPOINT;
@@ -28,18 +28,18 @@ import static enums.StatusType.SUCCESS;
 import static enums.TokenType.BEARER;
 import static io.restassured.RestAssured.given;
 
-public class UserController implements IContextService, IRestAssuredListener {
+public class UserController implements IContext, IRestAssuredListener {
 
-  public void registration(String contextType) {
-    IContextService.setUserUsernameToContext(contextType);
-    IContextService.setPasswordToContext(contextType);
+  public void registration() {
+    IContext.setUserUsernameToContext();
+    IContext.setPasswordToContext();
 
     installSpecification(
       requestSpecification(),
       responseSpecification(CREATED.getStatusCode())
     );
 
-    UserRegistrationRequest userRegistrationRequest = new UserRegistrationRequest(IContextService.getUsernameFromContext(contextType), IContextService.getPasswordFromContext(contextType));
+    UserRegistrationRequest userRegistrationRequest = new UserRegistrationRequest(IContext.getUsernameFromContext(), IContext.getPasswordFromContext());
     UserRegistrationResponse userRegistrationResponse = given()
       .filter(allureFilter)
       .body(userRegistrationRequest)
@@ -56,16 +56,16 @@ public class UserController implements IContextService, IRestAssuredListener {
       () -> Assertions.assertTrue(userRegistrationResponse.books().isEmpty())
     );
 
-    IContextService.setUserIdToContext(contextType, userRegistrationResponse.userId());
+    IContext.setUserIdToContext(userRegistrationResponse.userId());
   }
 
-  public void generateToken(String contextType) {
+  public void generateToken() {
     installSpecification(
       requestSpecification(),
       responseSpecification(OK.getStatusCode())
     );
 
-    GenerateAuthUserTokenRequest generateAuthUserTokenRequest = new GenerateAuthUserTokenRequest(IContextService.getUsernameFromContext(contextType), IContextService.getPasswordFromContext(contextType));
+    GenerateAuthUserTokenRequest generateAuthUserTokenRequest = new GenerateAuthUserTokenRequest(IContext.getUsernameFromContext(), IContext.getPasswordFromContext());
     GenerateAuthUserTokenResponse generateAuthUserTokenResponse = given()
       .filter(allureFilter)
       .body(generateAuthUserTokenRequest)
@@ -83,16 +83,16 @@ public class UserController implements IContextService, IRestAssuredListener {
       () -> Assertions.assertEquals(USER_AUTHORIZED_SUCCESSFULLY.getResult(), generateAuthUserTokenResponse.result())
     );
 
-    IContextService.setTokenToContext(contextType, generateAuthUserTokenResponse.token());
+    IContext.setTokenToContext(generateAuthUserTokenResponse.token());
   }
 
-  public void sendCredentials(String contextType) {
+  public void sendCredentials() {
     installSpecification(
       requestSpecification(),
       responseSpecification(OK.getStatusCode())
     );
 
-    SendUserCredentialsRequest sendUserCredentialsRequest = new SendUserCredentialsRequest(IContextService.getUsernameFromContext(contextType), IContextService.getPasswordFromContext(contextType));
+    SendUserCredentialsRequest sendUserCredentialsRequest = new SendUserCredentialsRequest(IContext.getUsernameFromContext(), IContext.getPasswordFromContext());
     SendUserCredentialsResponse sendUserCredentialsResponse = given()
       .filter(allureFilter)
       .body(sendUserCredentialsRequest)
@@ -104,19 +104,19 @@ public class UserController implements IContextService, IRestAssuredListener {
     removeSpecifications();
 
     Assertions.assertAll(
-      () -> Assertions.assertEquals(IContextService.getUserIdFromContext(contextType), sendUserCredentialsResponse.userId()),
-      () -> Assertions.assertEquals(IContextService.getUsernameFromContext(contextType), sendUserCredentialsResponse.username()),
-      () -> Assertions.assertEquals(IContextService.getPasswordFromContext(contextType), sendUserCredentialsResponse.password()),
-      () -> Assertions.assertEquals(IContextService.getTokenFromContext(contextType), sendUserCredentialsResponse.token()),
+      () -> Assertions.assertEquals(IContext.getUserIdFromContext(), sendUserCredentialsResponse.userId()),
+      () -> Assertions.assertEquals(IContext.getUsernameFromContext(), sendUserCredentialsResponse.username()),
+      () -> Assertions.assertEquals(IContext.getPasswordFromContext(), sendUserCredentialsResponse.password()),
+      () -> Assertions.assertEquals(IContext.getTokenFromContext(), sendUserCredentialsResponse.token()),
       () -> Assertions.assertNotNull(sendUserCredentialsResponse.expiresDate()),
       () -> Assertions.assertNotNull(sendUserCredentialsResponse.createdDate()),
       () -> Assertions.assertNotNull(sendUserCredentialsResponse.isActive())
     );
 
-    IContextService.setExpiresDateToContext(contextType, sendUserCredentialsResponse.expiresDate());
+    IContext.setExpiresDateToContext(sendUserCredentialsResponse.expiresDate());
   }
 
-  public void authorization(String contextType) {
+  public void authorization() {
     installSpecification(
       requestSpecification(),
       responseSpecification(OK.getStatusCode())
@@ -124,22 +124,22 @@ public class UserController implements IContextService, IRestAssuredListener {
 
     UserAuthorizationResponse userAuthorizationResponse = given()
       .filter(allureFilter)
-      .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
+      .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContext.getTokenFromContext())
       .when()
-      .get(getApplicationConfigValue(USER_SERVICE_ENDPOINT) + IContextService.getUserIdFromContext(contextType))
+      .get(getApplicationConfigValue(USER_SERVICE_ENDPOINT) + IContext.getUserIdFromContext())
       .then()
       .extract().response().as(UserAuthorizationResponse.class);
 
     removeSpecifications();
 
     Assertions.assertAll(
-      () -> Assertions.assertEquals(IContextService.getUserIdFromContext(contextType), userAuthorizationResponse.userId()),
-      () -> Assertions.assertEquals(IContextService.getUsernameFromContext(contextType), userAuthorizationResponse.username()),
+      () -> Assertions.assertEquals(IContext.getUserIdFromContext(), userAuthorizationResponse.userId()),
+      () -> Assertions.assertEquals(IContext.getUsernameFromContext(), userAuthorizationResponse.username()),
       () -> Assertions.assertTrue(userAuthorizationResponse.books().isEmpty())
     );
   }
 
-  public void deleteUser(String contextType) {
+  public void deleteUser() {
     installSpecification(
       requestSpecification(),
       responseSpecification(NO_CONTENT.getStatusCode())
@@ -147,9 +147,9 @@ public class UserController implements IContextService, IRestAssuredListener {
 
     given()
       .filter(allureFilter)
-      .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContextService.getTokenFromContext(contextType))
+      .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContext.getTokenFromContext())
       .when()
-      .delete(getApplicationConfigValue(USER_SERVICE_ENDPOINT) + IContextService.getUserIdFromContext(contextType));
+      .delete(getApplicationConfigValue(USER_SERVICE_ENDPOINT) + IContext.getUserIdFromContext());
 
     removeSpecifications();
   }

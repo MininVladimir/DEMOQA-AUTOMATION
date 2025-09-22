@@ -1,6 +1,6 @@
 package interfaces.ui.pages.basePage;
 
-import core.context.service.IContextService;
+import core.context.IContext;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 
@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.url;
 
-public abstract class BasePage implements IBasePage, IContextService {
+public abstract class BasePage implements IContext {
 
   public void openPage(String url) {
     open(url);

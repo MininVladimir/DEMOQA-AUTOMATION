@@ -1,15 +1,33 @@
-package core.context.api;
+package core.context;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class ApiContext {
+public class Context {
+  private String firstname;
+  private String lastname;
   private String username;
   private String password;
   private String userId;
   private String token;
   private String expiresDate;
   private List<HashMap<String, Object>> bookCollection;
+
+  public String getFirstname() {
+    return firstname;
+  }
+
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
+
+  public String getLastname() {
+    return lastname;
+  }
+
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
 
   public String getUsername() {
     return username;

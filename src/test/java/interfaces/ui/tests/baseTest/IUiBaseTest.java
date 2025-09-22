@@ -1,7 +1,7 @@
 package interfaces.ui.tests.baseTest;
 
 import core.config.webDriver.webDriverConfigReader.WebDriverConfigReader;
-import core.context.ui.UiContextHolder;
+import core.context.ContextHolder;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
@@ -16,7 +16,7 @@ public interface IUiBaseTest {
 
   @Step("Remove context")
   default void removeContext() {
-    UiContextHolder.removeContext();
+    ContextHolder.removeContext();
   }
 
   @Step("Clear local storage")

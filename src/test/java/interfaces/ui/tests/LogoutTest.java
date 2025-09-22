@@ -13,11 +13,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import static core.owners.Owners.VLADIMIR_MININ;
 import static docs.testDescriptions.TestDescriptions.PA_UI_06;
+import static interfaces.api.user.steps.UserSteps.login;
+import static interfaces.api.user.steps.UserSteps.registration;
 import static interfaces.ui.steps.LoginPageSteps.verifyLoginPageIsOpened;
-import static interfaces.ui.steps.ProfilePageSteps.login;
 import static interfaces.ui.steps.ProfilePageSteps.logoutButtonClick;
 import static interfaces.ui.steps.ProfilePageSteps.openDomainResource;
-import static interfaces.ui.steps.ProfilePageSteps.registration;
 import static interfaces.ui.steps.ProfilePageSteps.setAuthUserCookiesAndOpenProfilePage;
 
 @ExtendWith(RetryExtension.class)

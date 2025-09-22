@@ -1,24 +1,23 @@
 package interfaces.ui.steps;
 
-import core.context.service.IContextService;
-import core.context.ui.UiContextHolder;
+import core.context.IContext;
+import core.context.ContextHolder;
 import interfaces.ui.pages.registrationPage.RegistrationPage;
 import io.qameta.allure.Step;
 
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.REGISTRATION_PAGE_URL;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
-import static enums.ContextType.UI;
 import static enums.ResultType.USER_REGISTER_SUCCESSFULLY;
 
-public class RegistrationPageSteps implements IContextService {
+public class RegistrationPageSteps implements IContext {
   static RegistrationPage registrationPage = new RegistrationPage();
 
   @Step("Generate user data")
   private static void generateUserData() {
-    IContextService.setFirstNameToContext();
-    IContextService.setLastNameToContext();
-    IContextService.setUserUsernameToContext(UI.getContextType());
-    IContextService.setPasswordToContext(UI.getContextType());
+    IContext.setFirstNameToContext();
+    IContext.setLastNameToContext();
+    IContext.setUserUsernameToContext();
+    IContext.setPasswordToContext();
   }
 
   @Step("[UI] Open [Registration] page")
@@ -28,22 +27,22 @@ public class RegistrationPageSteps implements IContextService {
 
   @Step("[UI] Set 'firstName' input")
   private static void setFirstnameInput() {
-    registrationPage.setFirstNameInput(UiContextHolder.getContext().getFirstname());
+    registrationPage.setFirstNameInput(ContextHolder.getContext().getFirstname());
   }
 
   @Step("[UI] Set 'lastName' input")
   private static void setLastNameInput() {
-    registrationPage.setLastNameInput(UiContextHolder.getContext().getLastname());
+    registrationPage.setLastNameInput(ContextHolder.getContext().getLastname());
   }
 
   @Step("[UI] Set 'userName' input")
   private static void setUserNameInput() {
-    registrationPage.setUserNameInput(UiContextHolder.getContext().getUsername());
+    registrationPage.setUserNameInput(ContextHolder.getContext().getUsername());
   }
 
   @Step("[UI] Set 'password' input")
   private static void setPasswordInput() {
-    registrationPage.setPasswordInput(UiContextHolder.getContext().getPassword());
+    registrationPage.setPasswordInput(ContextHolder.getContext().getPassword());
   }
 
   @Step("[UI] Captcha confirm")

@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static core.owners.Owners.VLADIMIR_MININ;
-import static docs.testDescriptions.TestDescriptions.BOOKS_API_10;
-import static interfaces.api.bookStore.steps.BookStoreSteps.addBook;
+import static docs.testDescriptions.TestDescriptions.PA_API_10;
+import static interfaces.api.bookStore.steps.BookStoreSteps.addBookCollection;
 import static interfaces.api.user.steps.UserSteps.login;
 import static interfaces.api.user.steps.UserSteps.registration;
 
@@ -26,10 +26,10 @@ public class AddBookTest extends ApiBaseTest {
   }
 
   @Test
-  @Description(BOOKS_API_10)
+  @Description(PA_API_10)
   @Owner(VLADIMIR_MININ)
   @Severity(SeverityLevel.CRITICAL)
   public void addBookTest() {
-    addBook();
+    addBookCollection();
   }
 }

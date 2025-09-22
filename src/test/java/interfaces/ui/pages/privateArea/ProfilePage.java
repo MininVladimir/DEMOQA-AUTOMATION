@@ -1,6 +1,10 @@
 package interfaces.ui.pages.privateArea;
 
-import core.context.service.IContextService;
+import core.context.ContextHolder;
+import core.context.IContext;
+import core.utils.cookie.CookieUtils;
+import core.utils.table.TableUtils;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import interfaces.ui.pages.basePage.BasePage;
 
@@ -9,13 +13,24 @@ public class ProfilePage extends BasePage {
   private final By logoutButton = By.xpath("//button[text()='Log out']");
   private final By deleteAccountButton = By.xpath("//button[text()='Delete Account']");
   private final By submitOfDeleteUserButton = By.id("closeSmallModal-ok");
+  private final By headerCellLocator = By.xpath(".//div[@role='columnheader']");
+  private final By cellLocator = By.xpath(".//div[@class='rt-td']");
+  private final By nonEmptyRowLocator = By.xpath("//div[@role='row'][div[@class='rt-td'][normalize-space(text())]]");
 
-  public void setAuthUserCookiesAndOpenProfilePage(String url) {
-    setAuthUserCookiesAndOpenPrivateAreaPage(url);
+  private String getCellValueByColumnAndRow(String columnName, int rowIndex) {
+    return TableUtils.getCellValueByColumnAndRow(headerCellLocator, nonEmptyRowLocator, cellLocator, columnName, rowIndex);
   }
 
-  public void verifyUsername(String contextType) {
-    verifyTextOfElement(usernameValueLocator, IContextService.getUsernameFromContext(contextType));
+  private int getNonEmptyRowCount() {
+    return TableUtils.getNonEmptyRowCount(nonEmptyRowLocator);
+  }
+
+  public void setAuthUserCookiesAndOpenProfilePage(String url) {
+    CookieUtils.setAuthUserCookiesAndOpenPrivateAreaPage(url);
+  }
+
+  public void verifyUsername() {
+    verifyTextOfElement(usernameValueLocator, IContext.getUsernameFromContext());
   }
 
   public void logoutButtonClick() {
@@ -28,5 +43,17 @@ public class ProfilePage extends BasePage {
 
   public void deleteUserConfirmation() {
     elementClick(submitOfDeleteUserButton);
+  }
+
+  public void verifyNonEmptyRowCountEqualsSizeOfUserBookCollection() {
+    Assertions.assertEquals(getNonEmptyRowCount(), ContextHolder.getContext().getBookCollection().size());
+  }
+
+  public void verifyTableData() {
+    for(int i = 0; i < ContextHolder.getContext().getBookCollection().size(); i++) {
+      Assertions.assertEquals(getCellValueByColumnAndRow("Title", i), ContextHolder.getContext().getBookCollection().get(i).get("title"));
+      Assertions.assertEquals(getCellValueByColumnAndRow("Author", i), ContextHolder.getContext().getBookCollection().get(i).get("author"));
+      Assertions.assertEquals(getCellValueByColumnAndRow("Publisher", i), ContextHolder.getContext().getBookCollection().get(i).get("publisher"));
+    }
   }
 }

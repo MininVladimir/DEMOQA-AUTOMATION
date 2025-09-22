@@ -31,4 +31,9 @@ public class Generator {
       Collections.shuffle(list);
       return String.join("", list);
     }
+
+    public static int getRandomNumberInTheRange (int minValue, int maxValue) {
+      Random random = new Random();
+      return random.nextInt((maxValue - minValue) + 1) + minValue;
+    }
   }

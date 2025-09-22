@@ -13,9 +13,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 import static core.owners.Owners.VLADIMIR_MININ;
 import static docs.testDescriptions.TestDescriptions.PA_UI_05;
+import static interfaces.api.user.steps.UserSteps.registration;
 import static interfaces.ui.steps.LoginPageSteps.login;
 import static interfaces.ui.steps.LoginPageSteps.openLoginPage;
-import static interfaces.ui.steps.LoginPageSteps.registration;
 import static interfaces.ui.steps.ProfilePageSteps.verifyProfilePageIsOpened;
 
 @ExtendWith(RetryExtension.class)
