@@ -1,7 +1,7 @@
 Feature: PA_UI_11
 Owner: Vladimir Minin
 
-Scenario:   [PA][UI] Add book
+Scenario:   [PA][UI] Add books
     Given:  New registered user with added book collection
     When:   Open [Profile] page
     Then:   Non-empty rows of table = numbers of added books

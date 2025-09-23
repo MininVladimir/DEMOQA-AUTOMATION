@@ -17,7 +17,7 @@ import static interfaces.api.user.steps.UserSteps.login;
 import static interfaces.api.user.steps.UserSteps.registration;
 
 @ExtendWith(RetryExtension.class)
-public class AddBookTest extends ApiBaseTest {
+public class AddBooksTest extends ApiBaseTest {
 
   @BeforeEach
   public void loginNewUser() {
@@ -29,7 +29,7 @@ public class AddBookTest extends ApiBaseTest {
   @Description(PA_API_10)
   @Owner(VLADIMIR_MININ)
   @Severity(SeverityLevel.CRITICAL)
-  public void addBookTest() {
+  public void addBooksTest() {
     addBookCollection();
   }
 }

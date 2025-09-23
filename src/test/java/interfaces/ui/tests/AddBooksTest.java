@@ -22,7 +22,7 @@ import static interfaces.ui.steps.ProfilePageSteps.verifyNonEmptyRowCountEqualsS
 import static interfaces.ui.steps.ProfilePageSteps.verifyTableData;
 
 @ExtendWith(RetryExtension.class)
-public class AddBookTest extends UiBaseTest {
+public class AddBooksTest extends UiBaseTest {
 
   @BeforeEach
   @Step("[API] Add book collection by new registered user")
@@ -37,7 +37,7 @@ public class AddBookTest extends UiBaseTest {
   @Description(PA_UI_11)
   @Owner(VLADIMIR_MININ)
   @Severity(SeverityLevel.CRITICAL)
-  public void addBookTest() {
+  public void addBooksTest() {
     setAuthUserCookiesAndOpenProfilePage();
     verifyNonEmptyRowCountEqualsSizeOfUserBookCollection();
     verifyTableData();

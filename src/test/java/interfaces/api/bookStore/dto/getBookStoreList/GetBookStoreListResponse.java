@@ -1,4 +1,4 @@
-package interfaces.api.bookStore.dto.bookStoreList;
+package interfaces.api.bookStore.dto.getBookStoreList;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

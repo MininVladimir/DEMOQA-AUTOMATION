@@ -2,19 +2,21 @@ package interfaces.api.bookStore.controller;
 
 import core.context.IContext;
 import core.listener.restAssuredListener.IRestAssuredListener;
-import interfaces.api.bookStore.dto.bookStoreList.GetBookStoreListResponse;
-import interfaces.api.bookStore.dto.userList.AddBookRequest;
-import interfaces.api.bookStore.dto.userList.AddBookResponse;
+import interfaces.api.bookStore.dto.getBookStoreList.GetBookStoreListResponse;
+import interfaces.api.bookStore.dto.addBooks.AddBookCollectionRequest;
+import interfaces.api.bookStore.dto.addBooks.AddBookCollectionResponse;
 import interfaces.api.bookStore.service.IBookStoreController;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.HashMap;
 import java.util.List;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.BOOK_STORE_SERVICE_ENDPOINT;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.BOOK_STORE_SERVICE;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.DELETE_BOOK_COLLECTION_ENDPOINT;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.HeaderType.AUTHORIZATION;
 import static enums.StatusCodeType.CREATED;
+import static enums.StatusCodeType.NO_CONTENT;
 import static enums.StatusCodeType.OK;
 import static enums.TokenType.BEARER;
 import static interfaces.api.specifications.Specifications.installSpecification;
@@ -34,7 +36,7 @@ public class BookStoreController implements IContext, IRestAssuredListener, IBoo
     List<GetBookStoreListResponse> bookList = given()
       .filter(allureFilter)
       .when()
-      .get(getApplicationConfigValue(BOOK_STORE_SERVICE_ENDPOINT))
+      .get(getApplicationConfigValue(BOOK_STORE_SERVICE))
       .then()
       .extract().response().jsonPath().getList("books", GetBookStoreListResponse.class);
 
@@ -53,18 +55,35 @@ public class BookStoreController implements IContext, IRestAssuredListener, IBoo
     List<HashMap<String, Object>> generatedBookCollection = IBookStoreController.getBookCollection(bookList, bookCount);
     IContext.setBookCollectionToContext(generatedBookCollection);
 
-    AddBookRequest addBookRequest = new AddBookRequest(IContext.getUserIdFromContext(), generatedBookCollection);
+    AddBookCollectionRequest addBookCollectionRequest = new AddBookCollectionRequest(IContext.getUserIdFromContext(), generatedBookCollection);
     List<HashMap<String, Object>> userBookCollection = given()
       .filter(allureFilter)
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContext.getTokenFromContext())
-      .body(addBookRequest)
+      .body(addBookCollectionRequest)
       .when()
-      .post(getApplicationConfigValue(BOOK_STORE_SERVICE_ENDPOINT))
+      .post(getApplicationConfigValue(BOOK_STORE_SERVICE))
       .then()
-      .extract().response().as(AddBookResponse.class).userBookCollection();
+      .extract().response().as(AddBookCollectionResponse.class).userBookCollection();
 
     removeSpecifications();
 
     Assertions.assertEquals(IContext.getBookCollectionFromContext(), userBookCollection);
+  }
+
+  public void deleteBookCollection() {
+    installSpecification(
+      requestSpecification(),
+      responseSpecification(NO_CONTENT.getStatusCode())
+    );
+
+    given()
+      .filter(allureFilter)
+      .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContext.getTokenFromContext())
+      .when()
+      .delete(getApplicationConfigValue(DELETE_BOOK_COLLECTION_ENDPOINT) + IContext.getUserIdFromContext());
+
+    removeSpecifications();
+
+    IContext.getBookCollectionFromContext().clear();
   }
 }
