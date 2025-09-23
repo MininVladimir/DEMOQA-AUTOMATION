@@ -27,7 +27,6 @@ public class ProfilePage extends BasePage {
   private void initTableData() {
     ElementsCollection headers = $$(headerCellLocator);
     columnIndexMap = TableUtils.getColumnIndexMap(headers);
-    rows = $$(nonEmptyRowLocator);
   }
 
   private String getCellValueByColumnAndRow(String columnName, int rowIndex) {
@@ -59,15 +58,16 @@ public class ProfilePage extends BasePage {
   }
 
   public void verifyNonEmptyRowCountEqualsSizeOfUserBookCollection() {
-    initTableData();
-    Assertions.assertEquals(getNonEmptyRowCount(), ContextHolder.getContext().getBookCollection().size());
+    rows = $$(nonEmptyRowLocator);
+    Assertions.assertEquals(ContextHolder.getContext().getBookCollection().size(), getNonEmptyRowCount());
   }
 
   public void verifyTableData() {
+    initTableData();
     for(int i = 0; i < ContextHolder.getContext().getBookCollection().size(); i++) {
-      Assertions.assertEquals(getCellValueByColumnAndRow("Title", i), ContextHolder.getContext().getBookCollection().get(i).get("title"));
-      Assertions.assertEquals(getCellValueByColumnAndRow("Author", i), ContextHolder.getContext().getBookCollection().get(i).get("author"));
-      Assertions.assertEquals(getCellValueByColumnAndRow("Publisher", i), ContextHolder.getContext().getBookCollection().get(i).get("publisher"));
+      Assertions.assertEquals(ContextHolder.getContext().getBookCollection().get(i).get("title"), getCellValueByColumnAndRow("Title", i));
+      Assertions.assertEquals(ContextHolder.getContext().getBookCollection().get(i).get("author"), getCellValueByColumnAndRow("Author", i));
+      Assertions.assertEquals(ContextHolder.getContext().getBookCollection().get(i).get("publisher"), getCellValueByColumnAndRow("Publisher", i));
     }
   }
 }
