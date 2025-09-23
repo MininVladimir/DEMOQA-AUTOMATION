@@ -15,28 +15,30 @@ public class ApplicationConfigReader {
   }
 
   public enum AppConfigKey {
+    BASE_URI,
     FAVICON_URL,
     PROFILE_PAGE_URL,
     REGISTRATION_PAGE_URL,
     LOGIN_PAGE_URL,
-    BASE_URI,
-    USER_SERVICE_ENDPOINT,
-    GENERATE_TOKEN_SERVICE_ENDPOINT,
-    SEND_CREDENTIAL_SERVICE_ENDPOINT,
-    BOOK_STORE_SERVICE_ENDPOINT
+    USER_SERVICE,
+    BOOK_STORE_SERVICE,
+    GENERATE_TOKEN_ENDPOINT,
+    SEND_CREDENTIAL_ENDPOINT,
+    DELETE_BOOK_COLLECTION_ENDPOINT
   }
 
   public static String getApplicationConfigValue(AppConfigKey key) {
     return switch (key) {
+      case BASE_URI -> applicationConfig.baseUri();
       case FAVICON_URL -> applicationConfig.faviconUrl();
       case PROFILE_PAGE_URL -> applicationConfig.profilePageUrl();
       case REGISTRATION_PAGE_URL -> applicationConfig.registrationPageUrl();
       case LOGIN_PAGE_URL -> applicationConfig.loginPageUrl();
-      case BASE_URI -> applicationConfig.baseUri();
-      case USER_SERVICE_ENDPOINT -> applicationConfig.userServiceEndPoint();
-      case GENERATE_TOKEN_SERVICE_ENDPOINT -> applicationConfig.generateTokenServiceEndPoint();
-      case SEND_CREDENTIAL_SERVICE_ENDPOINT -> applicationConfig.sendCredentialServiceEndPoint();
-      case BOOK_STORE_SERVICE_ENDPOINT -> applicationConfig.bookStoreServiceEndpoint();
+      case USER_SERVICE -> applicationConfig.userService();
+      case BOOK_STORE_SERVICE -> applicationConfig.bookStoreService();
+      case GENERATE_TOKEN_ENDPOINT -> applicationConfig.generateTokenEndPoint();
+      case SEND_CREDENTIAL_ENDPOINT -> applicationConfig.sendCredentialEndPoint();
+      case DELETE_BOOK_COLLECTION_ENDPOINT -> applicationConfig.deleteBookCollectionEndPoint();
     };
   }
 }

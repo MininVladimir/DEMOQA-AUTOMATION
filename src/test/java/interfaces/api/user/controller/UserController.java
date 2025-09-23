@@ -11,9 +11,9 @@ import interfaces.api.user.dto.sendCredentials.SendUserCredentialsResponse;
 import core.context.IContext;
 import org.junit.jupiter.api.Assertions;
 
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.GENERATE_TOKEN_SERVICE_ENDPOINT;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.SEND_CREDENTIAL_SERVICE_ENDPOINT;
-import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.USER_SERVICE_ENDPOINT;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.GENERATE_TOKEN_ENDPOINT;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.SEND_CREDENTIAL_ENDPOINT;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.USER_SERVICE;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.StatusCodeType.CREATED;
 import static enums.StatusCodeType.NO_CONTENT;
@@ -44,7 +44,7 @@ public class UserController implements IContext, IRestAssuredListener {
       .filter(allureFilter)
       .body(userRegistrationRequest)
       .when()
-      .post(getApplicationConfigValue(USER_SERVICE_ENDPOINT))
+      .post(getApplicationConfigValue(USER_SERVICE))
       .then()
       .extract().response().as(UserRegistrationResponse.class);
 
@@ -70,7 +70,7 @@ public class UserController implements IContext, IRestAssuredListener {
       .filter(allureFilter)
       .body(generateAuthUserTokenRequest)
       .when()
-      .post(getApplicationConfigValue(GENERATE_TOKEN_SERVICE_ENDPOINT))
+      .post(getApplicationConfigValue(GENERATE_TOKEN_ENDPOINT))
       .then()
       .extract().response().as(GenerateAuthUserTokenResponse.class);
 
@@ -97,7 +97,7 @@ public class UserController implements IContext, IRestAssuredListener {
       .filter(allureFilter)
       .body(sendUserCredentialsRequest)
       .when()
-      .post(getApplicationConfigValue(SEND_CREDENTIAL_SERVICE_ENDPOINT))
+      .post(getApplicationConfigValue(SEND_CREDENTIAL_ENDPOINT))
       .then()
       .extract().response().as(SendUserCredentialsResponse.class);
 
@@ -126,7 +126,7 @@ public class UserController implements IContext, IRestAssuredListener {
       .filter(allureFilter)
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContext.getTokenFromContext())
       .when()
-      .get(getApplicationConfigValue(USER_SERVICE_ENDPOINT) + IContext.getUserIdFromContext())
+      .get(getApplicationConfigValue(USER_SERVICE) + IContext.getUserIdFromContext())
       .then()
       .extract().response().as(UserAuthorizationResponse.class);
 
@@ -149,7 +149,7 @@ public class UserController implements IContext, IRestAssuredListener {
       .filter(allureFilter)
       .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContext.getTokenFromContext())
       .when()
-      .delete(getApplicationConfigValue(USER_SERVICE_ENDPOINT) + IContext.getUserIdFromContext());
+      .delete(getApplicationConfigValue(USER_SERVICE) + IContext.getUserIdFromContext());
 
     removeSpecifications();
   }

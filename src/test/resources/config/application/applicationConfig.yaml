@@ -1,12 +1,17 @@
+#BASE URI
+baseUri: https://demoqa.com
+
 #UI URL
 faviconUrl: https://demoqa.com/favicon.png
 profilePageUrl: https://demoqa.com/profile
 registrationPageUrl: https://demoqa.com/register
 loginPageUrl: https://demoqa.com/login
 
+#SERVICES
+userService: /Account/v1/User/
+bookStoreService: /BookStore/v1/Books
+
 #API ENDPOINTS
-baseUri: https://demoqa.com
-userServiceEndPoint: /Account/v1/User/
-generateTokenServiceEndPoint: /Account/v1/GenerateToken
-sendCredentialServiceEndPoint: /Account/v1/Login
-bookStoreServiceEndpoint: /BookStore/v1/Books/
+generateTokenEndPoint: /Account/v1/GenerateToken
+sendCredentialEndPoint: /Account/v1/Login
+deleteBookCollectionEndPoint: /BookStore/v1/Books?UserId=

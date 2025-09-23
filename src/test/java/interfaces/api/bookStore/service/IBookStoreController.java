@@ -1,6 +1,6 @@
 package interfaces.api.bookStore.service;
 
-import interfaces.api.bookStore.dto.bookStoreList.GetBookStoreListResponse;
+import interfaces.api.bookStore.dto.getBookStoreList.GetBookStoreListResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;

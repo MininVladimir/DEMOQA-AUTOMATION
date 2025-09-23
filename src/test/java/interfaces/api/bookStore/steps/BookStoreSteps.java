@@ -1,7 +1,7 @@
 package interfaces.api.bookStore.steps;
 
 import interfaces.api.bookStore.controller.BookStoreController;
-import interfaces.api.bookStore.dto.bookStoreList.GetBookStoreListResponse;
+import interfaces.api.bookStore.dto.getBookStoreList.GetBookStoreListResponse;
 import io.qameta.allure.Step;
 
 import java.util.List;
@@ -22,5 +22,10 @@ public class BookStoreSteps {
       getBookList(),
       getRandomNumberInTheRange(2, 4)
     );
+  }
+
+  @Step("[API] Delete book collection")
+  public static void deleteBookCollection() {
+    bookStoreController.deleteBookCollection();
   }
 }
