@@ -11,15 +11,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import static core.owners.Owners.VLADIMIR_MININ;
-import static docs.testDescriptions.TestDescriptions.PA_API_12;
+import static docs.testDescriptions.TestDescriptions.PA_API_13;
 import static interfaces.api.bookStore.steps.BookStoreSteps.addBookCollection;
-import static interfaces.api.bookStore.steps.BookStoreSteps.deleteBookCollection;
+import static interfaces.api.bookStore.steps.BookStoreSteps.deleteBook;
 import static interfaces.api.bookStore.steps.BookStoreSteps.verifyUserBookCollection;
 import static interfaces.api.user.steps.UserSteps.login;
 import static interfaces.api.user.steps.UserSteps.registration;
 
 @ExtendWith(RetryExtension.class)
-public class DeleteBooksTest extends ApiBaseTest {
+public class DeleteBookTest extends ApiBaseTest {
 
   @BeforeEach
   public void loginNewUserAndAddBookCollection() {
@@ -29,11 +29,11 @@ public class DeleteBooksTest extends ApiBaseTest {
   }
 
   @Test
-  @Description(PA_API_12)
+  @Description(PA_API_13)
   @Owner(VLADIMIR_MININ)
   @Severity(SeverityLevel.CRITICAL)
-  public void deleteBooksTest() {
-    deleteBookCollection();
+  public void deleteBookTest() {
+    deleteBook();
     verifyUserBookCollection();
   }
 }

@@ -8,6 +8,7 @@ public record ApplicationConfig(
   String loginPageUrl,
   String userService,
   String bookStoreService,
+  String deleteBookService,
   String generateTokenEndPoint,
   String sendCredentialEndPoint,
   String deleteBookCollectionEndPoint) {}

@@ -1,0 +1,49 @@
+Feature: PA_API_13
+Owner: Vladimir Minin
+
+Scenario:   [PA][API] Delete book
+    Given:  New authorized user with added book collection
+    When:   Send request to book service:
+            ``
+            Request method: DELETE
+            Request URI:    https://demoqa.com/BookStore/v1/Book
+            Headers:        Authorization=Bearer {token}
+                            Content-Type=application/json
+            Body:           {
+                                "isbn": "{isbn}",
+                                "userId": "{userId}"
+                            }
+            ``
+    And:    Get response from book service:
+            ``
+            Status:         204 NO CONTENT
+
+            ``
+    And:    Send request to user service:
+            ``
+            Request method: GET
+            Request URI:    https://demoqa.com/Account/v1/User/{userId}
+            Headers:        Authorization=Bearer {token}
+                            Content-Type=application/json
+            ``
+    Then:   Get response from user service:
+            ``
+            Status:         200 OK
+            Content-Type:   application/json;
+                            charset=utf-8
+            Body:           {
+                                "books": [
+                                    {
+                                        "isbn": {isbn},
+                                        "title": {title},
+                                        "subTitle": {subTitle},
+                                        "author": {author},
+                                        "publish_date": {publishDate},
+                                        "publisher": {publisher},
+                                        "pages": {pages},
+                                        "description": {description},
+                                        "website": {website}
+                                    }
+                                ]
+                            }
+            ``

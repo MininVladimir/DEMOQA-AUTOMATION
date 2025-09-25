@@ -28,4 +28,14 @@ public class BookStoreSteps {
   public static void deleteBookCollection() {
     bookStoreController.deleteBookCollection();
   }
+
+  @Step("[API] Delete book")
+  public static void deleteBook() {
+    bookStoreController.deleteBook();
+  }
+
+  @Step("[API] Verify user book collection")
+  public static void verifyUserBookCollection() {
+    bookStoreController.verifyUserBookCollection();
+  }
 }

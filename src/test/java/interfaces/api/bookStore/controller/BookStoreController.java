@@ -2,9 +2,11 @@ package interfaces.api.bookStore.controller;
 
 import core.context.IContext;
 import core.listener.restAssuredListener.IRestAssuredListener;
+import interfaces.api.bookStore.dto.deleteBook.DeleteBookRequest;
 import interfaces.api.bookStore.dto.getBookStoreList.GetBookStoreListResponse;
 import interfaces.api.bookStore.dto.addBooks.AddBookCollectionRequest;
 import interfaces.api.bookStore.dto.addBooks.AddBookCollectionResponse;
+import interfaces.api.bookStore.dto.verifyUserBookCollection.VerifyUserBookCollectionResponse;
 import interfaces.api.bookStore.service.IBookStoreController;
 import org.junit.jupiter.api.Assertions;
 
@@ -13,6 +15,8 @@ import java.util.List;
 
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.BOOK_STORE_SERVICE;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.DELETE_BOOK_COLLECTION_ENDPOINT;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.DELETE_BOOK_SERVICE;
+import static core.config.application.applicationConfigReader.ApplicationConfigReader.AppConfigKey.USER_SERVICE;
 import static core.config.application.applicationConfigReader.ApplicationConfigReader.getApplicationConfigValue;
 import static enums.HeaderType.AUTHORIZATION;
 import static enums.StatusCodeType.CREATED;
@@ -85,5 +89,47 @@ public class BookStoreController implements IContext, IRestAssuredListener, IBoo
     removeSpecifications();
 
     IContext.getBookCollectionFromContext().clear();
+  }
+
+  public void deleteBook() {
+    installSpecification(
+      requestSpecification(),
+      responseSpecification(NO_CONTENT.getStatusCode())
+    );
+
+    String isbnOfDeletedBook = IBookStoreController.getRandomIsbnOfBookFromBookCollection();
+    DeleteBookRequest deleteBookRequest = new DeleteBookRequest(isbnOfDeletedBook, IContext.getUserIdFromContext());
+    given()
+      .filter(allureFilter)
+      .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContext.getTokenFromContext())
+      .body(deleteBookRequest)
+      .when()
+      .delete(getApplicationConfigValue(DELETE_BOOK_SERVICE));
+
+    removeSpecifications();
+
+    IContext.getBookCollectionFromContext().removeIf(x -> x.containsValue(isbnOfDeletedBook));
+  }
+
+  public void verifyUserBookCollection() {
+    installSpecification(
+      requestSpecification(),
+      responseSpecification(OK.getStatusCode())
+    );
+
+    VerifyUserBookCollectionResponse verifyUserBookCollectionResponse = given()
+      .filter(allureFilter)
+      .header(AUTHORIZATION.getHeader(), BEARER.getToken() + IContext.getTokenFromContext())
+      .when()
+      .get(getApplicationConfigValue(USER_SERVICE) + IContext.getUserIdFromContext())
+      .then()
+      .extract().response().as(VerifyUserBookCollectionResponse.class);
+
+    removeSpecifications();
+
+    for (int i = 0; i < IContext.getBookCollectionFromContext().size(); i++) {
+      Assertions.assertEquals(IContext.getBookCollectionFromContext().get(i).get("isbn"), verifyUserBookCollectionResponse.userBookCollection().get(i).get("isbn")
+      );
+    }
   }
 }
