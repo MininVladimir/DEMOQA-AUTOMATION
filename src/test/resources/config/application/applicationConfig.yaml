@@ -10,6 +10,7 @@ loginPageUrl: https://demoqa.com/login
 #SERVICES
 userService: /Account/v1/User/
 bookStoreService: /BookStore/v1/Books
+deleteBookService: /BookStore/v1/Book
 
 #API ENDPOINTS
 generateTokenEndPoint: /Account/v1/GenerateToken

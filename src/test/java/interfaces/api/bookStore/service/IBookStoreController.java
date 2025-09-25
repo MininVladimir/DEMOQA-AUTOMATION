@@ -1,5 +1,6 @@
 package interfaces.api.bookStore.service;
 
+import core.context.IContext;
 import interfaces.api.bookStore.dto.getBookStoreList.GetBookStoreListResponse;
 
 import java.util.ArrayList;
@@ -7,6 +8,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+
+import static core.generator.Generator.getRandomNumberInTheRange;
 
 public interface IBookStoreController {
 
@@ -39,5 +42,10 @@ public interface IBookStoreController {
       }
     }
     return bookCollection;
+  }
+
+  static String getRandomIsbnOfBookFromBookCollection() {
+    int bookCollectionSize = IContext.getBookCollectionFromContext().size();
+    return IContext.getBookCollectionFromContext().get(getRandomNumberInTheRange(0, bookCollectionSize - 1)).get("isbn").toString();
   }
 }
